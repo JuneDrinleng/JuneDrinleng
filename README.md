@@ -1,10 +1,4 @@
 ## Hi there 👋
-
-<!--
-**JuneDrinleng/JuneDrinleng** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
 - 🔭 我正在研究深度学习在单颗粒示踪中的应用
 - 🌱 我正在学习深度学习、概率图模型
 - 👯 I’m looking to collaborate on ...
@@ -13,4 +7,7 @@ Here are some ideas to get you started:
 - 📫 How to reach me: ...
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
+<!--
+**JuneDrinleng/JuneDrinleng** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+
 -->
