@@ -7,6 +7,9 @@
 - 💬 关于单颗粒示踪（single particle tracking），分析化学（analytical chemistry）随时问我
 - 📫 我的联系方式：zhu-jl24@mails.tsinghua.edu.cn
 - ⚡ 一些好玩的事情：给自己的博客网站加上了YMCA的bgm
+
+我的仓库更新了📈
+![Snake animation](./snack/github-snake.svg)
 <!--
 **JuneDrinleng/JuneDrinleng** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
