@@ -10,6 +10,11 @@
 
 统计数据📊
 <!--START_SECTION:waka-->
+
+```txt
+No activity tracked
+```
+
 <!--END_SECTION:waka-->
 
 我的仓库更新了📈
