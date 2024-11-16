@@ -43,4 +43,10 @@ jobs:
             dist/github-snake.svg
             dist/github-snake-dark.svg?palette=github-dark
             dist/ocean.gif?color_snake=orange&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
-
+      - name: upload
+        run: |
+            git config --global user.name '${{ github.actor }}'
+            git config --global user.email '${{ github.actor }}@users.noreply.github.com'
+            git add snack
+            git commit -m '添加生成的贡献图'
+            git push
