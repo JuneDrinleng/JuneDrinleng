@@ -9,14 +9,20 @@
 - ⚡ 一些好玩的事情：给自己的博客网站加上了YMCA的bgm
 
 统计数据📊
-<!--START_SECTION:waka-->
+<!-- START_SECTION:waka-->
 
 ```txt
 No activity tracked
 ```
 
-<!--END_SECTION:waka-->
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=junedrinleng)](https://github.com/anuraghazra/github-readme-stats)
+<!--END_SECTION:waka -->
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=junedrinleng&layout=compact&langs_count=8)](https://github.com/anuraghazra/github-readme-stats" />
+</a>
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api?username=junedrinleng&show_icons=true&theme=rose&rank_icon=github" />
+</a>
+<!-- [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=junedrinleng&layout=compact)](https://github.com/anuraghazra/github-readme-stats)[![junedrinleng's GitHub stats](https://github-readme-stats.vercel.app/api?username=junedrinleng&show_icons=true&theme=rose&rank_icon=github)](https://github.com/anuraghazra/github-readme-stats) -->
 
 我的仓库更新了📈
 ![Snake animation](./snack/github-snake.svg)
