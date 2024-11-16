@@ -10,6 +10,11 @@
 
 统计数据📊
 <!--START_SECTION:waka-->
+
+```txt
+No activity tracked
+```
+
 <!--END_SECTION:waka-->
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=junedrinleng)](https://github.com/anuraghazra/github-readme-stats)
 
