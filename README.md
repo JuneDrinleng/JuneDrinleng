@@ -11,6 +11,7 @@
 统计数据📊
 <!--START_SECTION:waka-->
 <!--END_SECTION:waka-->
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=junedrinleng)](https://github.com/anuraghazra/github-readme-stats)
 
 我的仓库更新了📈
 ![Snake animation](./snack/github-snake.svg)
