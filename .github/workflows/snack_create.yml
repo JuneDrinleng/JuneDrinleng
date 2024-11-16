@@ -47,12 +47,8 @@ jobs:
             snack/github-snake.svg
             snack/github-snake-dark.svg?palette=github-dark
             snack/ocean.gif?color_snake=orange&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
-      - name: upload
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-            git config --global user.name '${{ github.actor }}'
-            git config --global user.email '${{ github.actor }}@users.noreply.github.com'
-            git add snack
-            git commit -m '添加生成的贡献图'
-            git push
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            branch: main
