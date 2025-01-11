@@ -8,7 +8,7 @@ First-year doctoral student at Tsinghua University,Bachelor of Science in Chemis
 - 📫 Contact me：zhu-jl24@mails.tsinghua.edu.cn
 - ⚡ Something interesting：busy in reviewing my course
 
-统计数据📊  
+statistical data📊  
 
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=junedrinleng&layout=compact&langs_count=8&card_width=320" />
@@ -19,7 +19,7 @@ First-year doctoral student at Tsinghua University,Bachelor of Science in Chemis
 <!-- [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=junedrinleng&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 [![junedrinleng's GitHub stats](https://github-readme-stats.vercel.app/api?username=junedrinleng&show_icons=true&theme=rose&rank_icon=github)](https://github.com/anuraghazra/github-readme-stats) -->
 
-我的仓库更新了📈
+update for my repository📈
 ![Snake animation](./snack/github-snake.svg)
 <!--
 **JuneDrinleng/JuneDrinleng** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
