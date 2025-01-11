@@ -4,9 +4,9 @@ First-year doctoral student at Tsinghua University,Bachelor of Science in Chemis
 - 🌱 I am studying **deep learning**, **probabilistic graphical models**, and **javascript**
 - 👯 正在寻找会概率图模型的大佬帮帮我
 - 🤔 我遇到的困难：最近刚建了自己的🌏[博客网站](https://junedrinleng.github.io/)但让他收录到Google🔍的时候遇到了一些问题
-- 💬 关于单颗粒示踪（single particle tracking），分析化学（analytical chemistry）随时问我
-- 📫 我的联系方式：zhu-jl24@mails.tsinghua.edu.cn
-- ⚡ 一些好玩的事情：最近忙于复习，异常无奈
+- 💬 welcome any questions about single particle tracking，analytical chemistry）
+- 📫 Contact me：zhu-jl24@mails.tsinghua.edu.cn
+- ⚡ Something interesting：busy in reviewing my course
 
 统计数据📊  
 
