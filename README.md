@@ -3,7 +3,7 @@ First-year doctoral student at Tsinghua University,Bachelor of Science in Chemis
 - 🔭 I am studying the application of deep learning in single particle tracking
 - 🌱 I am studying **deep learning**, **probabilistic graphical models**, and **javascript**
 - 👯 I'm looking for time-series experts to help me
-- 🤔 我遇到的困难：最近刚建了自己的🌏[博客网站](https://junedrinleng.github.io/)但让他收录到Google🔍的时候遇到了一些问题
+- 🤔 Difficulty I am having：I have established🌏[my blog](https://junedrinleng.github.io/),but have difficulty in including my blog website into Google🔍
 - 💬 welcome any questions about single particle tracking，analytical chemistry）
 - 📫 Contact me：zhu-jl24@mails.tsinghua.edu.cn
 - ⚡ Something interesting：busy in reviewing my course
