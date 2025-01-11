@@ -1,7 +1,7 @@
 ## Hi there 👋
 First-year doctoral student at Tsinghua University,Bachelor of Science in Chemistry📕, Tsinghua University🎓
 - 🔭 I am studying the application of deep learning in single particle tracking
-- 🌱 I am studying deep learning, probabilistic graphical models
+- 🌱 I am studying **deep learning**, **probabilistic graphical models**, and **javascript**
 - 👯 正在寻找会概率图模型的大佬帮帮我
 - 🤔 我遇到的困难：最近刚建了自己的🌏[博客网站](https://junedrinleng.github.io/)但让他收录到Google🔍的时候遇到了一些问题
 - 💬 关于单颗粒示踪（single particle tracking），分析化学（analytical chemistry）随时问我
