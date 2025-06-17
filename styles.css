@@ -63,17 +63,32 @@ body {
 
 .intro {
   text-align: center;
-  margin-top: 6vw; /* 或者 padding-top */
+  margin-top: 2.5vw; /* 或者 padding-top */
   padding: 2.5vw 0 1.5vw;
 }
 
-.intro h2 {
+.handwritten {
+  width: 100%;
+  height: 100%;
+  display: block;
   margin: 0 auto;
-  font-size: 5.8rem;
-  color: var(--primary);
-  font-family: "Pinyon Script", serif;
-  font-weight: 700;
-  letter-spacing: 0.03em;
+}
+
+.handwritten text {
+  font-family: "Pinyon Script", cursive;
+  font-size: 4rem;
+  fill: var(--primary); /* 实心颜色 */
+  stroke: var(--primary); /* 描边颜色 */
+  stroke-width: 1.5px;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawText 3.5s ease forwards;
+}
+
+@keyframes drawText {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 /* 卡片横排区域 */
@@ -101,9 +116,11 @@ body {
   animation: fadeIn 0.8s ease both;
 }
 .card:hover {
-  transform: translateY(-5px);
-  background: #f9f7ef;
+  transform: scale(1.03);
+  background: #fff7d8;
+  box-shadow: 0 1vw 2.5vw rgba(0, 0, 0, 0.12);
 }
+
 .card h3 {
   font-size: 1.4rem;
   margin-bottom: 1vw;
@@ -117,22 +134,6 @@ body {
 .card ul {
   font-size: 1rem;
   line-height: 1.8;
-}
-
-/* 图片（如有） */
-.illustration {
-  grid-area: image;
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-}
-.illustration img {
-  width: 100%;
-  height: auto;
-  border-radius: var(--radius-lg);
-  border: 2px solid var(--border);
-  object-fit: cover;
-  box-shadow: var(--shadow);
 }
 
 /* 页脚 */
@@ -178,5 +179,19 @@ footer a:hover {
   }
   .card h3 {
     font-size: 1.2rem;
+  }
+}
+.nav-bar {
+  animation: slideDown 1s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
