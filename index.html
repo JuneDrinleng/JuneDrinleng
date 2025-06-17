@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>June Drinleng's Website</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/favicon.ico"
+      sizes="32x32"
+    />
+  </head>
+  <body>
+    <nav class="nav-bar" aria-label="主导航">
+      <h1 class="logo">June Drinleng's Website</h1>
+      <ul>
+        <!-- <li><a href="#">Seasonal&nbsp;Leaf</a></li>
+        <li><a href="#">Care&nbsp;指南</a></li>
+        <li><a href="#">Real&nbsp;Story</a></li> -->
+        <li>
+          <a
+            href="https://github.com/JuneDrinleng"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Contact&nbsp;Me</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <main class="content">
+      <section class="left-cards">
+        <article class="card">
+          <h3>🌿 读博笔记 – Green Diary</h3>
+          <p>记录文献阅读的内容与感悟。</p>
+        </article>
+        <article class="card">
+          <h3>📟 Research Helper</h3>
+          <p>你的科研生活小助手。</p>
+        </article>
+      </section>
+      <section class="illustration">
+        <img src="./assets/hero-illustration.jpg" alt="少女与绿叶插画" />
+      </section>
+      <section class="right-cards">
+        <article class="card">
+          <h3>About&nbsp;Me</h3>
+          <p>
+            关于我
+            欢迎来到我的个人笔记主页，我是华清带学化学系的一名博士生，现在是博士
+            1年级。 我的教育经历： 2020-2024年 清华大学 致理书院 化学专业
+            学士学位 2024-至今 清华大学 化学系 分析化学专业 博士研究生在读
+            我的研究方向： 生命分析化学，单颗粒示踪技术，深度学习 in SPT
+          </p>
+        </article>
+        <article class="card">
+          <h3>📸 Gallery</h3>
+          <p>个人摄影作品，施工中……</p>
+        </article>
+      </section>
+    </main>
+    <footer>
+      <p>
+        ©2025 June Drinleng |
+        <a href="https://beian.miit.gov.cn/" target="_blank"
+          >京ICP备2025124159号</a
+        >
+      </p>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const cards = document.querySelectorAll(".card");
+        cards.forEach((card) => {
+          const title = card.querySelector("h3")?.textContent || "";
+          if (title.includes("笔记")) {
+            card.addEventListener("click", () => {
+              window.open("https://note.junedrinleng.com", "_blank");
+            });
+            card.querySelector("p").innerHTML = `
+          包含文献阅读总结、化学知识要点、AI科研工具实践、代码笔记等内容：
+          <ul style="padding-left: 2em;">
+            <li>📚 论文 Digest：每日更新的文献阅读笔记</li>
+            <li>🧠 读博日记：记录读博生活的点点滴滴</li>
+            <li>💻 技术手记：Python、Java、Web Dav 等内容学校笔记</li>
+          </ul>`;
+          } else if (title.toLowerCase().includes("helper")) {
+            card.addEventListener("click", () => {
+              window.open("https://helper.junedrinleng.com", "_blank");
+            });
+            card.querySelector("p").innerHTML = `
+          一个集成式科研效率工具站，包含：
+          <ul style="padding-left: 2em;">
+            <li>🔍 单词翻译：通过谷歌翻译，解决你不会的单词</li>
+            <li>⚡ 电费查询：避免酣战科研时突然断电</li>
+            <li>🔥 热搜速览：足不出户便知天下事</li>
+          </ul>`;
+          } else if (title.includes("About")) {
+            card.querySelector("p").innerHTML = `
+          👩‍🔬 我是清华大学化学系博士研究生，研究方向为生命分析与单颗粒示踪，我的研究兴趣：
+          <ul style="padding-left: 2em;">
+            <li>单颗粒追踪（SPT）与图像分析</li>
+            <li>深度学习辅助轨迹识别</li>
+            <li>新型传感器构建与评估</li>
+          </ul>`;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
