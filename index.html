@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Mrs+Sheppards&family=Permanent+Marker&family=Pinyon+Script&display=swap"
       rel="stylesheet"
     />
     <link
@@ -45,11 +45,11 @@
       </div>
       <section class="bottom-cards">
         <article class="card">
-          <h3>🌿 读博笔记 – Learning Diary</h3>
+          <h3>Learning Notes</h3>
           <p>记录文献阅读的内容与感悟。</p>
         </article>
         <article class="card">
-          <h3>📟 Research Helper</h3>
+          <h3>Research Helper</h3>
           <p>你的科研生活小助手。</p>
         </article>
         <article class="card">
@@ -77,7 +77,7 @@
         const cards = document.querySelectorAll(".card");
         cards.forEach((card) => {
           const title = card.querySelector("h3")?.textContent || "";
-          if (title.includes("笔记")) {
+          if (title.includes("Notes")) {
             card.addEventListener("click", () => {
               window.open("https://note.junedrinleng.com", "_blank");
             });
