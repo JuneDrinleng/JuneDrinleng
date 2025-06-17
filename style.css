@@ -20,21 +20,14 @@ body {
   width: 100%;
   min-height: 100%;
   font-size: 1rem;
-}
-
-body {
   font-family: "Inter", sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
-  display: flex;
-  flex-direction: column;
   overflow-x: hidden;
-  overflow-y: auto;
-  padding: 0;
 }
 
-/* Nav */
+/* 导航栏 */
 .nav-bar {
   background: var(--primary);
   padding: 2vw 4vw;
@@ -42,18 +35,17 @@ body {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 .logo {
   font-family: "Pinyon Script", serif;
   font-weight: 700;
   font-size: 2.5rem;
   color: #fff;
-  line-height: 1;
 }
 .nav-bar ul {
   display: flex;
   gap: 2vw;
-  flex-wrap: wrap;
   list-style: none;
 }
 .nav-bar a {
@@ -69,60 +61,69 @@ body {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Content Grid */
-.content {
-  display: grid;
-  grid-template-areas: "left image right";
-  grid-template-columns: 1fr 0.8fr 1fr;
-  gap: 2vw;
-  padding: 4vw;
-  width: 100%;
-  min-height: calc(100vh - 8vw - 4vw);
-  align-items: start;
+.intro {
+  text-align: center;
+  margin-top: 6vw; /* 或者 padding-top */
+  padding: 2.5vw 0 1.5vw;
 }
 
-/* Cards */
-.left-cards,
-.right-cards {
+.intro h2 {
+  margin: 0 auto;
+  font-size: 5.8rem;
+  color: var(--primary);
+  font-family: "Pinyon Script", serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+/* 卡片横排区域 */
+.bottom-cards {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2vw;
+  padding: 2vw 4vw;
 }
-.left-cards {
-  grid-area: left;
-}
-.right-cards {
-  grid-area: right;
-}
-
-.card {
+.bottom-cards .card {
+  flex: 1 1 28%;
+  min-width: 280px;
+  max-width: 30%;
+  text-align: left;
   background: var(--surface);
   border: 1.5px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 2vw;
   box-shadow: var(--shadow);
-  transition: 0.3s;
+  transition: transform 0.3s ease, background 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  animation: fadeIn 0.8s ease both;
 }
 .card:hover {
-  transform: scale(1.02);
-  background: #f7f6ef;
+  transform: translateY(-5px);
+  background: #f9f7ef;
 }
-
 .card h3 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   margin-bottom: 1vw;
+  background: linear-gradient(to right, #e3c8a1, #f9f3e6);
+  padding: 0.4em 0.8em;
+  border-radius: 0.6em;
+  display: inline-block;
 }
 .card p,
 .card ul {
   font-size: 1rem;
-  line-height: 2.4;
+  line-height: 1.8;
 }
 
-/* Illustration */
+/* 图片（如有） */
 .illustration {
   grid-area: image;
   display: flex;
   justify-content: center;
+  align-items: stretch;
 }
 .illustration img {
   width: 100%;
@@ -130,9 +131,10 @@ body {
   border-radius: var(--radius-lg);
   border: 2px solid var(--border);
   object-fit: cover;
+  box-shadow: var(--shadow);
 }
 
-/* Footer */
+/* 页脚 */
 footer {
   text-align: center;
   font-size: 0.9rem;
@@ -148,66 +150,32 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* Responsive Layouts */
-@media (max-width: 1024px) {
-  .content {
-    grid-template-areas:
-      "left"
-      "image"
-      "right";
-    grid-template-columns: 1fr;
+/* 动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  .nav-bar {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 响应式适配 */
+@media (max-width: 900px) {
+  .bottom-cards {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1vw;
+    align-items: center;
+    padding: 2vw;
   }
-  .nav-bar a {
-    font-size: 1.5rem;
+  .bottom-cards .card {
+    max-width: 90%;
   }
-  .logo {
+  .intro h2 {
     font-size: 2rem;
   }
   .card h3 {
-    font-size: 1.25rem;
-  }
-}
-.content {
-  align-items: stretch; /* 关键：grid 区块同高 */
-}
-
-.left-cards,
-.right-cards {
-  justify-content: stretch;
-}
-
-.card {
-  height: 100%; /* 卡片与图片等高 */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.illustration {
-  align-items: stretch; /* 图片与卡片等高 */
-}
-.illustration img {
-  max-width: 100%;
-  max-height: 100%;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  border-radius: var(--radius-lg);
-  border: 2px solid var(--border);
-  box-shadow: var(--shadow);
-}
-
-@media (max-width: 1600px) {
-  .content {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  .illustration img {
-    max-height: 100%;
-    object-fit: contain;
+    font-size: 1.2rem;
   }
 }
