@@ -195,3 +195,10 @@ footer a:hover {
     opacity: 1;
   }
 }
+
+.pp {
+  font-size: 1.2rem;
+  color: var(--text);
+  margin-top: 1vw;
+  text-align: center;
+}
