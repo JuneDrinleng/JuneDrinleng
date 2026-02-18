@@ -8,12 +8,6 @@ First-year doctoral student at Tsinghua University,Bachelor of Science in Chemis
 - 📫 Contact me：zhu-jl24@mails.tsinghua.edu.cn
 - ⚡ Something interesting：busy in reviewing my course
 
-statistical data📊  
-
-
-<!-- [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=junedrinleng&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
-[![junedrinleng's GitHub stats](https://github-readme-stats.vercel.app/api?username=junedrinleng&show_icons=true&theme=rose&rank_icon=github)](https://github.com/anuraghazra/github-readme-stats) -->
-
 update for my repository📈
 ![Snake animation](./snack/github-snake.svg)
 <!--
