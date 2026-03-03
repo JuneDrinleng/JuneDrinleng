@@ -94,16 +94,15 @@
     trend.forEach(function (m) { totalAll += m.count; });
     var monthlyAvg = Math.round(totalAll / trend.length);
 
-    /* recent 6 months vs previous 6 months */
-    var recentCount = Math.min(6, trend.length);
-    var recent6 = trend.slice(-recentCount);
-    var prev6 = trend.length > 6 ? trend.slice(-12, -6) : [];
+    /* recent 1 month vs previous month */
+    var recent1 = trend.slice(-1);
+    var prev1 = trend.length > 1 ? trend.slice(-2, -1) : [];
 
     var recentSum = 0;
-    recent6.forEach(function (m) { recentSum += m.count; });
+    recent1.forEach(function (m) { recentSum += m.count; });
 
     var prevSum = 0;
-    prev6.forEach(function (m) { prevSum += m.count; });
+    prev1.forEach(function (m) { prevSum += m.count; });
 
     var trendDirection = 0;
     var trendPercent = 0;
@@ -128,7 +127,7 @@
       badge.style.display = "";
       badge.className = "insight-trend " + (trendDirection > 0 ? "trend-up" : "trend-down");
       badge.textContent = (trendDirection > 0 ? "↑" : "↓") +
-        " 相比前 6 个月" + (trendDirection > 0 ? "增长" : "下降") + " " + trendPercent + "%";
+        " 相比上个月" + (trendDirection > 0 ? "增长" : "下降") + " " + trendPercent + "%";
     }
 
     /* favorite artist card */
@@ -139,6 +138,57 @@
       document.getElementById("favArtistCount").textContent = "共收藏 " + data.topArtists[0].count + " 首歌曲";
       document.getElementById("favArtistTop3").textContent =
         "Top 3：" + data.topArtists.slice(0, 3).map(function (a) { return a.name; }).join("、");
+    }
+  }
+
+  /* ---------- 近期风格分析 ---------- */
+  function renderStyleAnalysis(data) {
+    if (!data.recentMonthAnalysis) return;
+    var a = data.recentMonthAnalysis;
+    var total = a.totalTracks || 1;
+
+    /* update label */
+    var label = document.getElementById("styleMonthLabel");
+    if (label) {
+      label.textContent = a.month + " · 共 " + total + " 首 — 近期 1 个月听歌风格分析";
+    }
+
+    /* style breakdown */
+    var styleContainer = document.getElementById("styleBreakdown");
+    if (styleContainer) {
+      styleContainer.innerHTML = "";
+      a.styleBreakdown.forEach(function (s) {
+        var pct = Math.round((s.count / total) * 100);
+        var item = document.createElement("div");
+        item.className = "style-item";
+        item.innerHTML =
+          '<div class="style-item-header">' +
+            '<span class="style-emoji">' + s.emoji + '</span>' +
+            '<span class="style-name">' + s.style + '</span>' +
+            '<span class="style-count">' + s.count + ' 首</span>' +
+            '<span class="style-pct">' + pct + '%</span>' +
+          '</div>' +
+          '<div class="style-bar-bg"><div class="style-bar" style="width:' + pct + '%"></div></div>' +
+          '<div class="style-desc">' + s.description + '</div>';
+        styleContainer.appendChild(item);
+      });
+    }
+
+    /* mood profile */
+    var moodContainer = document.getElementById("moodProfile");
+    if (moodContainer) {
+      moodContainer.innerHTML = "";
+      a.moodProfile.forEach(function (m) {
+        var item = document.createElement("div");
+        item.className = "mood-item";
+        item.innerHTML =
+          '<div class="mood-item-header">' +
+            '<span class="mood-name">' + m.mood + '</span>' +
+            '<span class="mood-pct">' + m.percent + '%</span>' +
+          '</div>' +
+          '<div class="mood-bar-bg"><div class="mood-bar" style="width:' + m.percent + '%;background:' + m.color + '"></div></div>';
+        moodContainer.appendChild(item);
+      });
     }
   }
 
@@ -323,6 +373,7 @@
       .then(function (data) {
         renderStatCards(data);
         renderInsights(data);
+        renderStyleAnalysis(data);
         renderPlatformTable(data);
         renderCharts(data);
       })

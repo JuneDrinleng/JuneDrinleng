@@ -219,6 +219,141 @@ body {
   border-top: 1px solid rgba(0,0,0,0.05);
 }
 
+/* ---- 近期风格分析 ---- */
+.style-section {
+  max-width: 1120px;
+  margin: 32px auto 0;
+  padding: 0 24px;
+  animation: fadeUp 0.6s 0.15s ease both;
+}
+
+.section-sub {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  margin-top: -10px;
+  margin-bottom: 16px;
+}
+
+.style-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.style-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0,0,0,0.04);
+  transition: box-shadow var(--transition);
+}
+.style-card:hover { box-shadow: var(--shadow-md); }
+
+.style-card-header {
+  margin-bottom: 18px;
+}
+.style-card-header h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.style-card-header p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.style-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.style-item-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 5px;
+}
+.style-emoji { font-size: 1.1rem; }
+.style-name {
+  flex: 1;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.style-count {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.style-pct {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 36px;
+  text-align: right;
+}
+
+.style-bar-bg {
+  height: 7px;
+  background: rgba(0,0,0,0.05);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.style-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius: 4px;
+  transition: width 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+.style-desc {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+}
+
+/* mood profile */
+.mood-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.mood-item-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.mood-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.mood-pct {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.mood-bar-bg {
+  height: 10px;
+  background: rgba(0,0,0,0.05);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.mood-bar {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+@media (max-width: 700px) {
+  .style-container { grid-template-columns: 1fr; }
+  .section-sub { font-size: 0.78rem; }
+}
+
 /* ---- 图表区域 ---- */
 .charts-section {
   max-width: 1120px;
