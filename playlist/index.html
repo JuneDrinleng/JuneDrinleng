@@ -38,13 +38,7 @@
 
       <!-- 统计概览卡片 -->
       <section class="stats-section">
-        <div class="stats-grid">
-          <div class="stat-card" v-for="(item, idx) in statItems" :key="idx">
-            <div class="stat-icon">{{ item.icon }}</div>
-            <div class="stat-value">{{ item.display }}</div>
-            <div class="stat-label">{{ item.label }}</div>
-          </div>
-        </div>
+        <div class="stats-grid" id="statsGrid"></div>
       </section>
 
       <!-- 近期偏好分析 -->
@@ -57,14 +51,10 @@
               <span class="insight-title">近期活跃度</span>
             </div>
             <div class="insight-body">
-              <div class="insight-big-number">{{ recentTotal }}</div>
+              <div class="insight-big-number" id="recentTotal">-</div>
               <div class="insight-desc">最近 6 个月新增收藏歌曲</div>
             </div>
-            <div class="insight-trend" v-if="trendDirection !== 0" :class="trendDirection > 0 ? 'trend-up' : 'trend-down'">
-              <span v-if="trendDirection > 0">↑</span>
-              <span v-else>↓</span>
-              相比前 6 个月{{ trendDirection > 0 ? '增长' : '下降' }} {{ Math.abs(trendPercent) }}%
-            </div>
+            <div class="insight-trend" id="trendBadge" style="display:none;"></div>
           </div>
 
           <div class="insight-card">
@@ -73,8 +63,8 @@
               <span class="insight-title">高峰月份</span>
             </div>
             <div class="insight-body">
-              <div class="insight-big-number">{{ peakMonth.month }}</div>
-              <div class="insight-desc">收藏了 {{ peakMonth.count }} 首歌曲</div>
+              <div class="insight-big-number" id="peakMonth">-</div>
+              <div class="insight-desc" id="peakMonthDesc">收藏高峰月份</div>
             </div>
             <div class="insight-detail">历史收藏高峰</div>
           </div>
@@ -85,24 +75,22 @@
               <span class="insight-title">月均收藏</span>
             </div>
             <div class="insight-body">
-              <div class="insight-big-number">{{ monthlyAvg }}</div>
+              <div class="insight-big-number" id="monthlyAvg">-</div>
               <div class="insight-desc">每月平均新增歌曲</div>
             </div>
-            <div class="insight-detail">基于全部 {{ totalMonths }} 个月数据</div>
+            <div class="insight-detail" id="totalMonthsDetail">-</div>
           </div>
 
-          <div class="insight-card" v-if="data.topArtists.length > 0">
+          <div class="insight-card" id="favArtistCard" style="display:none;">
             <div class="insight-header">
               <span class="insight-icon">🎤</span>
               <span class="insight-title">最爱艺术家</span>
             </div>
             <div class="insight-body">
-              <div class="insight-big-number">{{ data.topArtists[0].name }}</div>
-              <div class="insight-desc">共收藏 {{ data.topArtists[0].count }} 首歌曲</div>
+              <div class="insight-big-number" id="favArtistName">-</div>
+              <div class="insight-desc" id="favArtistCount">-</div>
             </div>
-            <div class="insight-detail">
-              Top 3：{{ data.topArtists.slice(0,3).map(a => a.name).join('、') }}
-            </div>
+            <div class="insight-detail" id="favArtistTop3">-</div>
           </div>
         </div>
       </section>
@@ -179,14 +167,7 @@
               <span>占比</span>
               <span></span>
             </div>
-            <div class="platform-row" v-for="(p, idx) in data.platforms" :key="idx">
-              <span class="platform-name">{{ p.name }}</span>
-              <span class="platform-count">{{ p.count }}</span>
-              <span class="platform-percent">{{ ((p.count / data.totalTracks) * 100).toFixed(1) }}%</span>
-              <span class="platform-bar-cell">
-                <span class="platform-bar" :style="{ width: (p.count / data.platforms[0].count * 100) + '%' }"></span>
-              </span>
-            </div>
+            <div id="platformTableBody"></div>
           </div>
         </div>
       </section>
@@ -200,7 +181,6 @@
       </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@3.4.21/dist/vue.global.prod.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
     <script src="./app.js"></script>
   </body>
