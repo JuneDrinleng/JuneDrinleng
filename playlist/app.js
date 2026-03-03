@@ -1,5 +1,5 @@
 /* ============================================
-   音乐歌单分析 — Vue 3 Dashboard
+   音乐歌单分析 — Vanilla JS Dashboard
    ============================================ */
 
 (function () {
@@ -12,33 +12,178 @@
     "#e11d48", "#0ea5e9", "#78716c"
   ];
 
-  /* ---------- Chart.js 全局默认 ---------- */
-  Chart.defaults.font.family = '"Inter", -apple-system, BlinkMacSystemFont, sans-serif';
-  Chart.defaults.font.size = 12;
-  Chart.defaults.color = "#7c8297";
-  Chart.defaults.plugins.legend.labels.usePointStyle = true;
-  Chart.defaults.plugins.legend.labels.padding = 14;
-  Chart.defaults.plugins.tooltip.cornerRadius = 8;
-  Chart.defaults.plugins.tooltip.padding = 10;
+  /* ---------- Chart.js 全局默认（安全检查） ---------- */
+  function configureChartDefaults() {
+    if (typeof Chart === "undefined") return;
+    Chart.defaults.font.family = '"Inter", -apple-system, BlinkMacSystemFont, sans-serif';
+    Chart.defaults.font.size = 12;
+    Chart.defaults.color = "#7c8297";
+    Chart.defaults.plugins.legend.labels.usePointStyle = true;
+    Chart.defaults.plugins.legend.labels.padding = 14;
+    Chart.defaults.plugins.tooltip.cornerRadius = 8;
+    Chart.defaults.plugins.tooltip.padding = 10;
+  }
 
   /* ---------- 数字滚动动画 ---------- */
-  function animateCounter(ref, target) {
-    var start = 0;
+  function animateCounter(el, target) {
     var duration = 1000;
     var startTime = null;
     function step(ts) {
       if (!startTime) startTime = ts;
       var progress = Math.min((ts - startTime) / duration, 1);
       var eased = 1 - Math.pow(1 - progress, 3);
-      ref.value = Math.floor(eased * target).toLocaleString();
+      el.textContent = Math.floor(eased * target).toLocaleString();
       if (progress < 1) requestAnimationFrame(step);
-      else ref.value = target.toLocaleString();
+      else el.textContent = target.toLocaleString();
     }
     requestAnimationFrame(step);
   }
 
+  /* ---------- 统计卡片渲染 ---------- */
+  function renderStatCards(data) {
+    var items = [
+      { icon: "🎵", value: data.totalTracks, label: "总歌曲数", color: 1 },
+      { icon: "🎤", value: data.uniqueArtists, label: "艺术家数", color: 2 },
+      { icon: "💿", value: data.uniqueAlbums, label: "专辑数", color: 3 },
+      { icon: "📱", value: data.uniquePlatforms, label: "平台数", color: 4 }
+    ];
+
+    var grid = document.getElementById("statsGrid");
+    grid.innerHTML = "";
+
+    items.forEach(function (item) {
+      var card = document.createElement("div");
+      card.className = "stat-card";
+
+      var iconDiv = document.createElement("div");
+      iconDiv.className = "stat-icon";
+      iconDiv.textContent = item.icon;
+
+      var valueDiv = document.createElement("div");
+      valueDiv.className = "stat-value";
+      valueDiv.textContent = "0";
+
+      var labelDiv = document.createElement("div");
+      labelDiv.className = "stat-label";
+      labelDiv.textContent = item.label;
+
+      card.appendChild(iconDiv);
+      card.appendChild(valueDiv);
+      card.appendChild(labelDiv);
+      grid.appendChild(card);
+
+      animateCounter(valueDiv, item.value);
+    });
+  }
+
+  /* ---------- 近期偏好分析 ---------- */
+  function renderInsights(data) {
+    var trend = data.monthlyTrend;
+    if (!trend || trend.length === 0) return;
+
+    var totalMonths = trend.length;
+
+    /* peak month */
+    var peak = { month: "-", count: 0 };
+    trend.forEach(function (m) {
+      if (m.count > peak.count) peak = m;
+    });
+
+    /* monthly average */
+    var totalAll = 0;
+    trend.forEach(function (m) { totalAll += m.count; });
+    var monthlyAvg = Math.round(totalAll / trend.length);
+
+    /* recent 6 months vs previous 6 months */
+    var recentCount = Math.min(6, trend.length);
+    var recent6 = trend.slice(-recentCount);
+    var prev6 = trend.length > 6 ? trend.slice(-12, -6) : [];
+
+    var recentSum = 0;
+    recent6.forEach(function (m) { recentSum += m.count; });
+
+    var prevSum = 0;
+    prev6.forEach(function (m) { prevSum += m.count; });
+
+    var trendDirection = 0;
+    var trendPercent = 0;
+    if (prevSum > 0 && recentSum > 0) {
+      var change = ((recentSum - prevSum) / prevSum * 100);
+      trendDirection = change >= 0 ? 1 : -1;
+      trendPercent = Math.round(Math.abs(change));
+    } else if (recentSum > 0) {
+      trendDirection = 1;
+      trendPercent = 100;
+    }
+
+    document.getElementById("recentTotal").textContent = recentSum;
+    document.getElementById("peakMonth").textContent = peak.month;
+    document.getElementById("peakMonthDesc").textContent = "收藏了 " + peak.count + " 首歌曲";
+    document.getElementById("monthlyAvg").textContent = monthlyAvg;
+    document.getElementById("totalMonthsDetail").textContent = "基于全部 " + totalMonths + " 个月数据";
+
+    /* trend badge */
+    if (trendDirection !== 0) {
+      var badge = document.getElementById("trendBadge");
+      badge.style.display = "";
+      badge.className = "insight-trend " + (trendDirection > 0 ? "trend-up" : "trend-down");
+      badge.textContent = (trendDirection > 0 ? "↑" : "↓") +
+        " 相比前 6 个月" + (trendDirection > 0 ? "增长" : "下降") + " " + trendPercent + "%";
+    }
+
+    /* favorite artist card */
+    if (data.topArtists && data.topArtists.length > 0) {
+      var card = document.getElementById("favArtistCard");
+      card.style.display = "";
+      document.getElementById("favArtistName").textContent = data.topArtists[0].name;
+      document.getElementById("favArtistCount").textContent = "共收藏 " + data.topArtists[0].count + " 首歌曲";
+      document.getElementById("favArtistTop3").textContent =
+        "Top 3：" + data.topArtists.slice(0, 3).map(function (a) { return a.name; }).join("、");
+    }
+  }
+
+  /* ---------- 平台详情表格 ---------- */
+  function renderPlatformTable(data) {
+    var body = document.getElementById("platformTableBody");
+    body.innerHTML = "";
+    if (!data.platforms || data.platforms.length === 0) return;
+    var maxCount = data.platforms[0].count || 1;
+
+    data.platforms.forEach(function (p) {
+      var row = document.createElement("div");
+      row.className = "platform-row";
+
+      var name = document.createElement("span");
+      name.className = "platform-name";
+      name.textContent = p.name;
+
+      var count = document.createElement("span");
+      count.className = "platform-count";
+      count.textContent = p.count;
+
+      var percent = document.createElement("span");
+      percent.className = "platform-percent";
+      percent.textContent = ((p.count / data.totalTracks) * 100).toFixed(1) + "%";
+
+      var barCell = document.createElement("span");
+      barCell.className = "platform-bar-cell";
+      var bar = document.createElement("span");
+      bar.className = "platform-bar";
+      bar.style.width = (p.count / maxCount * 100) + "%";
+      barCell.appendChild(bar);
+
+      row.appendChild(name);
+      row.appendChild(count);
+      row.appendChild(percent);
+      row.appendChild(barCell);
+      body.appendChild(row);
+    });
+  }
+
   /* ---------- 图表渲染 ---------- */
-  function renderPlatformChart(data) {
+  function renderCharts(data) {
+    if (typeof Chart === "undefined") return;
+
     new Chart(document.getElementById("platformChart"), {
       type: "doughnut",
       data: {
@@ -55,9 +200,7 @@
         plugins: { legend: { position: "bottom" } }
       }
     });
-  }
 
-  function renderTagsChart(data) {
     new Chart(document.getElementById("tagsChart"), {
       type: "doughnut",
       data: {
@@ -74,9 +217,7 @@
         plugins: { legend: { position: "bottom" } }
       }
     });
-  }
 
-  function renderArtistChart(data) {
     new Chart(document.getElementById("artistChart"), {
       type: "bar",
       data: {
@@ -105,9 +246,7 @@
         }
       }
     });
-  }
 
-  function renderAlbumChart(data) {
     new Chart(document.getElementById("albumChart"), {
       type: "bar",
       data: {
@@ -136,9 +275,7 @@
         }
       }
     });
-  }
 
-  function renderTrendChart(data) {
     new Chart(document.getElementById("trendChart"), {
       type: "line",
       data: {
@@ -177,112 +314,20 @@
     });
   }
 
-  /* ---------- Vue App ---------- */
-  var app = Vue.createApp({
-    data: function () {
-      return {
-        data: {
-          totalTracks: 0,
-          uniqueArtists: 0,
-          uniqueAlbums: 0,
-          uniquePlatforms: 0,
-          platforms: [],
-          topArtists: [],
-          topAlbums: [],
-          periodTags: [],
-          monthlyTrend: [],
-          dateRange: { start: "", end: "" }
-        },
-        statItems: [],
-        recentTotal: 0,
-        trendDirection: 0,
-        trendPercent: 0,
-        peakMonth: { month: "-", count: 0 },
-        monthlyAvg: 0,
-        totalMonths: 0
-      };
-    },
-    mounted: function () {
-      var self = this;
-      fetch("./data.json")
-        .then(function (res) { return res.json(); })
-        .then(function (json) {
-          self.data = json;
-          self.computeStats(json);
-          self.computeInsights(json);
-          Vue.nextTick(function () {
-            renderPlatformChart(json);
-            renderTagsChart(json);
-            renderArtistChart(json);
-            renderAlbumChart(json);
-            renderTrendChart(json);
-          });
-        })
-        .catch(function (err) {
-          console.error("Failed to load playlist data:", err);
-        });
-    },
-    methods: {
-      computeStats: function (data) {
-        var items = [
-          { icon: "🎵", value: data.totalTracks, label: "总歌曲数", display: "0" },
-          { icon: "🎤", value: data.uniqueArtists, label: "艺术家数", display: "0" },
-          { icon: "💿", value: data.uniqueAlbums, label: "专辑数", display: "0" },
-          { icon: "📱", value: data.uniquePlatforms, label: "平台数", display: "0" }
-        ];
-        this.statItems = items;
-        var self = this;
-        Vue.nextTick(function () {
-          items.forEach(function (item) {
-            animateCounter(item, item.value);
-          });
-          self.statItems = items.slice();
-        });
-      },
+  /* ---------- 初始化 ---------- */
+  document.addEventListener("DOMContentLoaded", function () {
+    configureChartDefaults();
 
-      computeInsights: function (data) {
-        var trend = data.monthlyTrend;
-        if (!trend || trend.length === 0) return;
-        this.totalMonths = trend.length;
-
-        /* peak month */
-        var peak = { month: "-", count: 0 };
-        trend.forEach(function (m) {
-          if (m.count > peak.count) peak = m;
-        });
-        this.peakMonth = peak;
-
-        /* monthly average */
-        var totalAll = 0;
-        trend.forEach(function (m) { totalAll += m.count; });
-        this.monthlyAvg = Math.round(totalAll / trend.length);
-
-        /* recent 6 months vs previous 6 months */
-        var recentCount = Math.min(6, trend.length);
-        var recent6 = trend.slice(-recentCount);
-        var prev6 = trend.length > 6 ? trend.slice(-12, -6) : [];
-
-        var recentSum = 0;
-        recent6.forEach(function (m) { recentSum += m.count; });
-        this.recentTotal = recentSum;
-
-        var prevSum = 0;
-        prev6.forEach(function (m) { prevSum += m.count; });
-
-        if (prevSum > 0 && recentSum > 0) {
-          var change = ((recentSum - prevSum) / prevSum * 100);
-          this.trendDirection = change >= 0 ? 1 : -1;
-          this.trendPercent = Math.round(Math.abs(change));
-        } else if (recentSum > 0) {
-          this.trendDirection = 1;
-          this.trendPercent = 100;
-        } else {
-          this.trendDirection = 0;
-          this.trendPercent = 0;
-        }
-      }
-    }
+    fetch("./data.json")
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        renderStatCards(data);
+        renderInsights(data);
+        renderPlatformTable(data);
+        renderCharts(data);
+      })
+      .catch(function (err) {
+        console.error("Failed to load playlist data:", err);
+      });
   });
-
-  app.mount("#app");
 })();
