@@ -1,0 +1,352 @@
+{
+  "totalTracks": 794,
+  "platforms": [
+    {
+      "name": "Apple Music",
+      "count": 439
+    },
+    {
+      "name": "QQ音乐",
+      "count": 157
+    },
+    {
+      "name": "酷我音乐",
+      "count": 108
+    },
+    {
+      "name": "网易云音乐",
+      "count": 45
+    },
+    {
+      "name": "酷狗音乐",
+      "count": 43
+    },
+    {
+      "name": "咪咕音乐",
+      "count": 2
+    }
+  ],
+  "topArtists": [
+    {
+      "name": "周杰伦",
+      "count": 42
+    },
+    {
+      "name": "草东没有派对",
+      "count": 26
+    },
+    {
+      "name": "HOYO-MiX",
+      "count": 22
+    },
+    {
+      "name": "RADWIMPS",
+      "count": 18
+    },
+    {
+      "name": "30年前，50年后",
+      "count": 16
+    },
+    {
+      "name": "杨千嬅",
+      "count": 15
+    },
+    {
+      "name": "李小璐",
+      "count": 15
+    },
+    {
+      "name": "宋冬野",
+      "count": 13
+    },
+    {
+      "name": "李荣浩",
+      "count": 11
+    },
+    {
+      "name": "锦零",
+      "count": 10
+    },
+    {
+      "name": "五月天",
+      "count": 10
+    },
+    {
+      "name": "郭顶",
+      "count": 9
+    },
+    {
+      "name": "祥嘞嘞",
+      "count": 9
+    },
+    {
+      "name": "买辣椒也用券",
+      "count": 9
+    },
+    {
+      "name": "陈粒",
+      "count": 8
+    }
+  ],
+  "topAlbums": [
+    {
+      "name": "丑奴儿",
+      "count": 21
+    },
+    {
+      "name": "跨时代",
+      "count": 19
+    },
+    {
+      "name": "鲸落 - Single",
+      "count": 15
+    },
+    {
+      "name": "精卫",
+      "count": 15
+    },
+    {
+      "name": "电光幻影",
+      "count": 15
+    },
+    {
+      "name": "安和桥北",
+      "count": 13
+    },
+    {
+      "name": "杰伦",
+      "count": 11
+    },
+    {
+      "name": "恋爱画板 - Single",
+      "count": 10
+    },
+    {
+      "name": "叶惠美",
+      "count": 9
+    },
+    {
+      "name": "南山雪",
+      "count": 9
+    },
+    {
+      "name": "飞行器的执行周期",
+      "count": 8
+    },
+    {
+      "name": "君の名は。",
+      "count": 8
+    },
+    {
+      "name": "如也",
+      "count": 7
+    },
+    {
+      "name": "起风了 (旧版)",
+      "count": 6
+    },
+    {
+      "name": "新地球",
+      "count": 6
+    }
+  ],
+  "periodTags": [
+    {
+      "name": "default",
+      "count": 755
+    },
+    {
+      "name": "跑步",
+      "count": 25
+    },
+    {
+      "name": "写作业",
+      "count": 7
+    },
+    {
+      "name": "usual",
+      "count": 7
+    }
+  ],
+  "monthlyTrend": [
+    {
+      "month": "2020-09",
+      "count": 167
+    },
+    {
+      "month": "2022-09",
+      "count": 26
+    },
+    {
+      "month": "2022-10",
+      "count": 5
+    },
+    {
+      "month": "2022-11",
+      "count": 17
+    },
+    {
+      "month": "2022-12",
+      "count": 22
+    },
+    {
+      "month": "2023-01",
+      "count": 39
+    },
+    {
+      "month": "2023-02",
+      "count": 2
+    },
+    {
+      "month": "2023-03",
+      "count": 1
+    },
+    {
+      "month": "2023-04",
+      "count": 15
+    },
+    {
+      "month": "2023-05",
+      "count": 18
+    },
+    {
+      "month": "2023-06",
+      "count": 11
+    },
+    {
+      "month": "2023-07",
+      "count": 10
+    },
+    {
+      "month": "2023-08",
+      "count": 5
+    },
+    {
+      "month": "2023-09",
+      "count": 11
+    },
+    {
+      "month": "2023-10",
+      "count": 39
+    },
+    {
+      "month": "2023-11",
+      "count": 19
+    },
+    {
+      "month": "2023-12",
+      "count": 13
+    },
+    {
+      "month": "2024-01",
+      "count": 19
+    },
+    {
+      "month": "2024-02",
+      "count": 18
+    },
+    {
+      "month": "2024-03",
+      "count": 16
+    },
+    {
+      "month": "2024-04",
+      "count": 9
+    },
+    {
+      "month": "2024-05",
+      "count": 21
+    },
+    {
+      "month": "2024-06",
+      "count": 14
+    },
+    {
+      "month": "2024-07",
+      "count": 6
+    },
+    {
+      "month": "2024-08",
+      "count": 10
+    },
+    {
+      "month": "2024-09",
+      "count": 11
+    },
+    {
+      "month": "2024-10",
+      "count": 31
+    },
+    {
+      "month": "2024-11",
+      "count": 12
+    },
+    {
+      "month": "2024-12",
+      "count": 22
+    },
+    {
+      "month": "2025-01",
+      "count": 13
+    },
+    {
+      "month": "2025-02",
+      "count": 15
+    },
+    {
+      "month": "2025-03",
+      "count": 10
+    },
+    {
+      "month": "2025-04",
+      "count": 13
+    },
+    {
+      "month": "2025-05",
+      "count": 14
+    },
+    {
+      "month": "2025-06",
+      "count": 15
+    },
+    {
+      "month": "2025-07",
+      "count": 16
+    },
+    {
+      "month": "2025-08",
+      "count": 10
+    },
+    {
+      "month": "2025-09",
+      "count": 12
+    },
+    {
+      "month": "2025-10",
+      "count": 16
+    },
+    {
+      "month": "2025-11",
+      "count": 5
+    },
+    {
+      "month": "2025-12",
+      "count": 16
+    },
+    {
+      "month": "2026-01",
+      "count": 14
+    },
+    {
+      "month": "2026-02",
+      "count": 16
+    }
+  ],
+  "uniqueArtists": 330,
+  "uniqueAlbums": 397,
+  "uniquePlatforms": 6,
+  "dateRange": {
+    "start": "2020-09-01",
+    "end": "2026-02-28"
+  }
+}

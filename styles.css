@@ -196,6 +196,10 @@ footer a:hover {
   }
 }
 
+.card-link {
+  cursor: pointer;
+}
+
 .pp {
   font-size: 1.2rem;
   color: var(--text);
