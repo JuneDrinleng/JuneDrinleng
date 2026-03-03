@@ -5,34 +5,34 @@
 (function () {
   "use strict";
 
-  /* ---------- Apple 配色 ---------- */
+  /* ---------- 渐变配色 ---------- */
   var COLORS = [
-    "#0071e3",
-    "#34c759",
+    "#5e5ce6",
+    "#30d158",
     "#ff9f0a",
     "#ff375f",
-    "#af52de",
+    "#bf5af2",
     "#5ac8fa",
     "#ff6482",
-    "#30d158",
+    "#34c759",
     "#ffd60a",
     "#64d2ff",
-    "#bf5af2",
+    "#ac8e68",
     "#ff453a",
     "#32ade6",
-    "#ac8e68",
+    "#a2845e",
     "#8e8e93",
   ];
 
   /* ---------- Chart.js 全局默认 ---------- */
   Chart.defaults.font.family =
     '"Inter", -apple-system, BlinkMacSystemFont, sans-serif';
-  Chart.defaults.font.size = 13;
+  Chart.defaults.font.size = 12;
   Chart.defaults.color = "#6e6e73";
   Chart.defaults.plugins.legend.labels.usePointStyle = true;
-  Chart.defaults.plugins.legend.labels.padding = 16;
+  Chart.defaults.plugins.legend.labels.padding = 14;
   Chart.defaults.plugins.tooltip.cornerRadius = 10;
-  Chart.defaults.plugins.tooltip.padding = 12;
+  Chart.defaults.plugins.tooltip.padding = 10;
 
   /* ---------- 工具 ---------- */
   function animateValue(el, target, duration) {
@@ -45,6 +45,29 @@
       if (progress < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
+  }
+
+  /* ---------- 滚动渐入动画 ---------- */
+  function initScrollReveal() {
+    var blocks = document.querySelectorAll(".chart-block");
+    if (!("IntersectionObserver" in window)) {
+      blocks.forEach(function (b) { b.classList.add("visible"); });
+      return;
+    }
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    blocks.forEach(function (block) {
+      observer.observe(block);
+    });
   }
 
   /* ---------- 渲染统计卡片 ---------- */
@@ -92,7 +115,7 @@
             }),
             backgroundColor: COLORS.slice(0, data.platforms.length),
             borderWidth: 0,
-            hoverOffset: 8,
+            hoverOffset: 6,
           },
         ],
       },
@@ -117,10 +140,16 @@
             data: data.topArtists.map(function (a) {
               return a.count;
             }),
-            backgroundColor: COLORS[0],
-            borderRadius: 8,
+            backgroundColor: function (ctx) {
+              var chart = ctx.chart;
+              var gradient = chart.ctx.createLinearGradient(0, 0, chart.width, 0);
+              gradient.addColorStop(0, "#5e5ce6");
+              gradient.addColorStop(1, "#bf5af2");
+              return gradient;
+            },
+            borderRadius: 6,
             borderSkipped: false,
-            maxBarThickness: 40,
+            maxBarThickness: 32,
           },
         ],
       },
@@ -149,10 +178,16 @@
             data: data.topAlbums.map(function (a) {
               return a.count;
             }),
-            backgroundColor: COLORS[1],
-            borderRadius: 8,
+            backgroundColor: function (ctx) {
+              var chart = ctx.chart;
+              var gradient = chart.ctx.createLinearGradient(0, 0, chart.width, 0);
+              gradient.addColorStop(0, "#30d158");
+              gradient.addColorStop(1, "#5ac8fa");
+              return gradient;
+            },
+            borderRadius: 6,
             borderSkipped: false,
-            maxBarThickness: 40,
+            maxBarThickness: 32,
           },
         ],
       },
@@ -181,12 +216,21 @@
             data: data.monthlyTrend.map(function (m) {
               return m.count;
             }),
-            borderColor: COLORS[0],
-            backgroundColor: "rgba(0,113,227,0.08)",
+            borderColor: "#5e5ce6",
+            backgroundColor: function (ctx) {
+              var chart = ctx.chart;
+              var area = chart.chartArea;
+              if (!area) return "rgba(94,92,230,0.08)";
+              var gradient = chart.ctx.createLinearGradient(0, area.top, 0, area.bottom);
+              gradient.addColorStop(0, "rgba(94,92,230,0.18)");
+              gradient.addColorStop(1, "rgba(94,92,230,0.01)");
+              return gradient;
+            },
             fill: true,
             tension: 0.4,
-            pointRadius: 3,
-            pointHoverRadius: 6,
+            pointRadius: 2,
+            pointHoverRadius: 5,
+            borderWidth: 2.5,
           },
         ],
       },
@@ -215,7 +259,7 @@
             }),
             backgroundColor: COLORS.slice(0, data.periodTags.length),
             borderWidth: 0,
-            hoverOffset: 8,
+            hoverOffset: 6,
           },
         ],
       },
@@ -238,6 +282,7 @@
       renderAlbumChart(data);
       renderTrendChart(data);
       renderTagsChart(data);
+      initScrollReveal();
     })
     .catch(function (err) {
       console.error("Failed to load playlist data:", err);
