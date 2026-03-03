@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>音乐歌单分析 - June Drinleng</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Pinyon+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="../assets/favicon.ico"
+      sizes="32x32"
+    />
+    <script
+      defer
+      src="https://umami.junedrinleng.com/script.js"
+      data-website-id="6b8456c6-57c8-4379-964e-12433d938243"
+    ></script>
+  </head>
+  <body>
+    <!-- 顶部导航 -->
+    <nav class="nav-bar">
+      <a href="../index.html" class="back-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        返回主页
+      </a>
+      <span class="nav-title">音乐歌单分析</span>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <header class="hero">
+      <p class="hero-eyebrow">My Playlist</p>
+      <h1 class="hero-title">音乐歌单数据分析</h1>
+      <p class="hero-subtitle">探索我的音乐品味与聆听轨迹</p>
+    </header>
+
+    <!-- 统计概览卡片 -->
+    <section class="stats-section">
+      <div class="stats-grid" id="statsGrid">
+        <!-- 由 JS 动态填充 -->
+      </div>
+    </section>
+
+    <!-- 图表区域 -->
+    <section class="charts-section">
+      <div class="chart-block">
+        <h2 class="section-title">平台分布</h2>
+        <p class="section-desc">我在各音乐平台上收藏的歌曲数量</p>
+        <div class="chart-container chart-container--doughnut">
+          <canvas id="platformChart"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-block">
+        <h2 class="section-title">最爱艺术家 Top 15</h2>
+        <p class="section-desc">出现频率最高的歌手</p>
+        <div class="chart-container chart-container--bar">
+          <canvas id="artistChart"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-block">
+        <h2 class="section-title">最爱专辑 Top 15</h2>
+        <p class="section-desc">收藏次数最多的专辑</p>
+        <div class="chart-container chart-container--bar">
+          <canvas id="albumChart"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-block">
+        <h2 class="section-title">收听时间线</h2>
+        <p class="section-desc">每月新增收藏歌曲趋势</p>
+        <div class="chart-container chart-container--line">
+          <canvas id="trendChart"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-block">
+        <h2 class="section-title">场景标签</h2>
+        <p class="section-desc">不同场景下的歌曲分类</p>
+        <div class="chart-container chart-container--doughnut">
+          <canvas id="tagsChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+      <p>
+        ©2025 June Drinleng |
+        <a href="https://beian.miit.gov.cn/" target="_blank"
+          >京ICP备2025124159号</a
+        >
+      </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
