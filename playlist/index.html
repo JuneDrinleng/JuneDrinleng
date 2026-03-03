@@ -51,11 +51,21 @@
 
     <!-- 图表区域 -->
     <section class="charts-section">
-      <div class="chart-block">
-        <h2 class="section-title">平台分布</h2>
-        <p class="section-desc">我在各音乐平台上收藏的歌曲数量</p>
-        <div class="chart-container chart-container--doughnut">
-          <canvas id="platformChart"></canvas>
+      <!-- 双列甜甜圈：平台分布 + 场景标签 -->
+      <div class="charts-row">
+        <div class="chart-block">
+          <h2 class="section-title">平台分布</h2>
+          <p class="section-desc">我在各音乐平台上收藏的歌曲数量</p>
+          <div class="chart-container chart-container--doughnut">
+            <canvas id="platformChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-block">
+          <h2 class="section-title">场景标签</h2>
+          <p class="section-desc">不同场景下的歌曲分类</p>
+          <div class="chart-container chart-container--doughnut">
+            <canvas id="tagsChart"></canvas>
+          </div>
         </div>
       </div>
 
@@ -80,14 +90,6 @@
         <p class="section-desc">每月新增收藏歌曲趋势</p>
         <div class="chart-container chart-container--line">
           <canvas id="trendChart"></canvas>
-        </div>
-      </div>
-
-      <div class="chart-block">
-        <h2 class="section-title">场景标签</h2>
-        <p class="section-desc">不同场景下的歌曲分类</p>
-        <div class="chart-container chart-container--doughnut">
-          <canvas id="tagsChart"></canvas>
         </div>
       </div>
     </section>
