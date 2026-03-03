@@ -146,7 +146,8 @@
   function renderPlatformTable(data) {
     var body = document.getElementById("platformTableBody");
     body.innerHTML = "";
-    var maxCount = data.platforms.length > 0 ? data.platforms[0].count : 1;
+    if (!data.platforms || data.platforms.length === 0) return;
+    var maxCount = data.platforms[0].count || 1;
 
     data.platforms.forEach(function (p) {
       var row = document.createElement("div");
