@@ -242,10 +242,11 @@
 
       computeInsights: function (data) {
         var trend = data.monthlyTrend;
+        if (!trend || trend.length === 0) return;
         this.totalMonths = trend.length;
 
         /* peak month */
-        var peak = { month: "", count: 0 };
+        var peak = { month: "-", count: 0 };
         trend.forEach(function (m) {
           if (m.count > peak.count) peak = m;
         });
@@ -257,8 +258,9 @@
         this.monthlyAvg = Math.round(totalAll / trend.length);
 
         /* recent 6 months vs previous 6 months */
-        var recent6 = trend.slice(-6);
-        var prev6 = trend.slice(-12, -6);
+        var recentCount = Math.min(6, trend.length);
+        var recent6 = trend.slice(-recentCount);
+        var prev6 = trend.length > 6 ? trend.slice(-12, -6) : [];
 
         var recentSum = 0;
         recent6.forEach(function (m) { recentSum += m.count; });
@@ -267,13 +269,16 @@
         var prevSum = 0;
         prev6.forEach(function (m) { prevSum += m.count; });
 
-        if (prevSum > 0) {
+        if (prevSum > 0 && recentSum > 0) {
           var change = ((recentSum - prevSum) / prevSum * 100);
           this.trendDirection = change >= 0 ? 1 : -1;
           this.trendPercent = Math.round(Math.abs(change));
-        } else {
+        } else if (recentSum > 0) {
           this.trendDirection = 1;
           this.trendPercent = 100;
+        } else {
+          this.trendDirection = 0;
+          this.trendPercent = 0;
         }
       }
     }

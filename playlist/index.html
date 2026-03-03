@@ -60,7 +60,7 @@
               <div class="insight-big-number">{{ recentTotal }}</div>
               <div class="insight-desc">最近 6 个月新增收藏歌曲</div>
             </div>
-            <div class="insight-trend" :class="trendDirection > 0 ? 'trend-up' : 'trend-down'">
+            <div class="insight-trend" v-if="trendDirection !== 0" :class="trendDirection > 0 ? 'trend-up' : 'trend-down'">
               <span v-if="trendDirection > 0">↑</span>
               <span v-else>↓</span>
               相比前 6 个月{{ trendDirection > 0 ? '增长' : '下降' }} {{ Math.abs(trendPercent) }}%
@@ -91,14 +91,14 @@
             <div class="insight-detail">基于全部 {{ totalMonths }} 个月数据</div>
           </div>
 
-          <div class="insight-card">
+          <div class="insight-card" v-if="data.topArtists.length > 0">
             <div class="insight-header">
               <span class="insight-icon">🎤</span>
               <span class="insight-title">最爱艺术家</span>
             </div>
             <div class="insight-body">
-              <div class="insight-big-number">{{ data.topArtists[0]?.name }}</div>
-              <div class="insight-desc">共收藏 {{ data.topArtists[0]?.count }} 首歌曲</div>
+              <div class="insight-big-number">{{ data.topArtists[0].name }}</div>
+              <div class="insight-desc">共收藏 {{ data.topArtists[0].count }} 首歌曲</div>
             </div>
             <div class="insight-detail">
               Top 3：{{ data.topArtists.slice(0,3).map(a => a.name).join('、') }}
