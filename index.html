@@ -16,8 +16,10 @@
         var params = new URLSearchParams(window.location.search);
         var urlTheme = params.get("theme");
         var theme;
+        var fromTransition = false;
         if (urlTheme === "dark" || urlTheme === "light") {
           theme = urlTheme;
+          fromTransition = true;
           localStorage.setItem("theme", theme);
         } else {
           theme =
@@ -27,6 +29,51 @@
               : "light");
         }
         document.documentElement.classList.toggle("dark", theme === "dark");
+
+        // If arriving from a cross-site transition, inject a loading overlay
+        // that matches the source site's overlay so it feels seamless
+        if (fromTransition) {
+          var bg = theme === "light" ? "#fff" : "#000";
+          var dotColor = theme === "light" ? "#000" : "#fff";
+          var labelColor =
+            theme === "light" ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.6)";
+          var overlay = document.createElement("div");
+          overlay.id = "site-arrival-overlay";
+          overlay.setAttribute(
+            "style",
+            "position:fixed;inset:0;z-index:9999;display:flex;align-items:center;" +
+              "justify-content:center;background:" +
+              bg +
+              ";pointer-events:all;" +
+              "transition:opacity 350ms ease;",
+          );
+          overlay.innerHTML =
+            '<div style="display:flex;flex-direction:column;align-items:center;gap:16px">' +
+            '<div style="display:flex;gap:8px">' +
+            '<span class="st-dot" style="width:8px;height:8px;border-radius:50%;background:' +
+            dotColor +
+            '"></span>' +
+            '<span class="st-dot" style="width:8px;height:8px;border-radius:50%;background:' +
+            dotColor +
+            '"></span>' +
+            '<span class="st-dot" style="width:8px;height:8px;border-radius:50%;background:' +
+            dotColor +
+            '"></span>' +
+            "</div>" +
+            '<p style="color:' +
+            labelColor +
+            ';font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin:0">Redirecting…</p>' +
+            "</div>" +
+            "<style>" +
+            ".st-dot{animation:st-dp 1s ease-in-out infinite}" +
+            ".st-dot:nth-child(2){animation-delay:.15s}" +
+            ".st-dot:nth-child(3){animation-delay:.3s}" +
+            "@keyframes st-dp{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.1)}}" +
+            "</style>";
+          document.body.appendChild(overlay);
+          // Mark that we need React to dismiss this overlay
+          window.__siteArrivalOverlay = true;
+        }
       })();
     </script>
   </head>
