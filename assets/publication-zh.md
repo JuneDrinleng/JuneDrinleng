@@ -1,13 +1,31 @@
 # Publications
 
-1. Zhang, Y., Zhu, J., Du, Y., Xie, H. & He, Y. Large vision model supported tracking of high-density particles based on optical flow learning. _Cell Rep. Phys. Sci._ 0, 102904 (2025).
-2. Zhang, Y., Zhu, J., Xie, H. & He, Y. Physics-informed deep learning for stochastic particle dynamics estimation. _Proc. Natl. Acad. Sci. U.S.A._ 122, e2418643122 (2025).
-3. Sang, Y., Zhang, Z., Ren, Q., Zhu, J. & He, Y. Rapid Evaluation of Antimicrobial Potency Through Bacterial Collective Motion Analysis. _ACS Appl. Bio Mater._ 8, 519–526 (2025).
+---
 
-## Overview
+**Large vision model supported tracking of high-density particles based on optical flow learning**
 
-![Cell Rep. Phys. Sci.](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng@5ae32d2c1c8df476a0b18ec436c3560b476c22dc/assets/img/cell-rep-phys-sci-2025.jpg)
+Zhang, Y., Zhu, J., Du, Y., Xie, H. & He, Y.
 
-![Proc. Natl. Acad. Sci. U.S.A.](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng@5ae32d2c1c8df476a0b18ec436c3560b476c22dc/assets/img/pnas-2025.png)
+_Cell Rep. Phys. Sci._ 0, 102904 (2025).
 
-![ACS Appl. Bio Mater.](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng@5ae32d2c1c8df476a0b18ec436c3560b476c22dc/assets/img/acs-appl-bio-mater-2025.jpeg)
+![Cell Rep. Phys. Sci.](/assets/img/cell-rep-phys-sci-2025.jpg)
+
+---
+
+**Physics-informed deep learning for stochastic particle dynamics estimation**
+
+Zhang, Y., Zhu, J., Xie, H. & He, Y.
+
+_Proc. Natl. Acad. Sci. U.S.A._ 122, e2418643122 (2025).
+
+![Proc. Natl. Acad. Sci. U.S.A.](/assets/img/pnas-2025.png)
+
+---
+
+**Rapid Evaluation of Antimicrobial Potency Through Bacterial Collective Motion Analysis**
+
+Sang, Y., Zhang, Z., Ren, Q., Zhu, J. & He, Y.
+
+_ACS Appl. Bio Mater._ 8, 519–526 (2025).
+
+![ACS Appl. Bio Mater.](/assets/img/acs-appl-bio-mater-2025.jpeg)
