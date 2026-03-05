@@ -14,12 +14,17 @@ declare global {
 }
 
 export function App() {
-  // Dismiss the loading overlay once the app has rendered AND images have loaded
+  // Dismiss the loading overlay once the app has rendered AND all images loaded
   useEffect(() => {
     if (!window.__siteArrivalOverlay) return;
     window.__siteArrivalOverlay = false;
 
+    let dismissed = false;
+
     const dismiss = () => {
+      if (dismissed) return;
+      dismissed = true;
+      observer?.disconnect();
       const overlay = document.getElementById("site-arrival-overlay");
       if (overlay) {
         overlay.style.opacity = "0";
@@ -29,31 +34,52 @@ export function App() {
       }
     };
 
-    // Wait for all <img> in #root to finish loading
-    const images = Array.from(
-      document.querySelectorAll<HTMLImageElement>("#root img"),
-    );
-    const pending = images.filter((img) => !img.complete);
-
-    if (pending.length === 0) {
-      // All images already loaded (cached or none)
-      const t = setTimeout(dismiss, 50);
-      return () => clearTimeout(t);
-    }
-
-    let remaining = pending.length;
-    const onDone = () => {
-      remaining--;
-      if (remaining <= 0) dismiss();
+    const checkImages = () => {
+      const root = document.getElementById("root");
+      if (!root) return;
+      const images = Array.from(root.querySelectorAll<HTMLImageElement>("img"));
+      // Need at least 1 image (profile) to be in the DOM
+      if (images.length === 0) return;
+      const pending = images.filter((img) => !img.complete);
+      if (pending.length === 0) {
+        dismiss();
+        return;
+      }
+      // Listen for remaining images
+      let remaining = pending.length;
+      const onDone = () => {
+        remaining--;
+        if (remaining <= 0) dismiss();
+      };
+      pending.forEach((img) => {
+        img.addEventListener("load", onDone, { once: true });
+        img.addEventListener("error", onDone, { once: true });
+      });
     };
-    pending.forEach((img) => {
-      img.addEventListener("load", onDone, { once: true });
-      img.addEventListener("error", onDone, { once: true });
+
+    // Use MutationObserver to wait for images to appear in the DOM
+    const observer = new MutationObserver(() => {
+      const root = document.getElementById("root");
+      if (root && root.querySelectorAll("img").length > 0) {
+        observer.disconnect();
+        checkImages();
+      }
     });
 
-    // Safety timeout: dismiss after 4s no matter what
-    const safety = setTimeout(dismiss, 4000);
-    return () => clearTimeout(safety);
+    observer.observe(document.getElementById("root")!, {
+      childList: true,
+      subtree: true,
+    });
+
+    // Also check immediately in case images are already in the DOM
+    checkImages();
+
+    // Safety timeout: dismiss after 6s no matter what
+    const safety = setTimeout(dismiss, 6000);
+    return () => {
+      clearTimeout(safety);
+      observer.disconnect();
+    };
   }, []);
 
   return (
