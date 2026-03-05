@@ -206,13 +206,19 @@ body {
 }
 
 /* ---- Explore Section ---- */
-.explore-section {
+.explore-section,
+.education-section,
+.research-section,
+.publication-section {
   max-width: 72rem;
   margin: 0 auto;
   padding: 0 1rem 2.5rem;
 }
 
-.explore-section .section-title {
+.explore-section .section-title,
+.education-section .section-title,
+.research-section .section-title,
+.publication-section .section-title {
   font-size: clamp(1.5rem, 3vw, 1.875rem);
   font-weight: 700;
   text-transform: uppercase;
@@ -220,7 +226,10 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.explore-section .section-subtitle {
+.explore-section .section-subtitle,
+.education-section .section-subtitle,
+.research-section .section-subtitle,
+.publication-section .section-subtitle {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -282,7 +291,10 @@ footer a:hover {
   }
 
   .about-section,
-  .explore-section {
+  .explore-section,
+  .education-section,
+  .research-section,
+  .publication-section {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
   }
@@ -315,7 +327,10 @@ footer a:hover {
   }
 
   .about-section,
-  .explore-section {
+  .explore-section,
+  .education-section,
+  .research-section,
+  .publication-section {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
@@ -328,7 +343,10 @@ footer a:hover {
 
   .site-header-inner,
   .about-section,
-  .explore-section {
+  .explore-section,
+  .education-section,
+  .research-section,
+  .publication-section {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
   }
