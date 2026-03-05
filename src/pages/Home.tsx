@@ -200,7 +200,7 @@ export function Home() {
             {/* Bio – right */}
             <div className="flex-1 p-6 sm:p-8 bg-white dark:bg-neutral-900 flex flex-col justify-center">
               <h2 className="text-2xl sm:text-3xl font-bold uppercase tracking-tight mb-4">
-                {language === "en" ? "About Me" : "关于我"}
+                {"June Drinleng 朱峻纶"}
               </h2>
               <div className="text-sm sm:text-base leading-relaxed opacity-80 space-y-3">
                 {profileContent.split("\n\n").map((para, i) => (

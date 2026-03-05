@@ -18,10 +18,10 @@ export function TitleBar() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-primary border-b-4 border-foreground">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[rgb(3,2,19)] border-b-4 border-[rgb(3,2,19)]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-4 sm:gap-6">
-          <h1 className="text-xl sm:text-2xl font-bold text-background">
+          <h1 className="text-xl sm:text-2xl font-bold text-white">
             June Drinleng
           </h1>
           <nav className="hidden sm:flex items-center gap-1">
@@ -29,7 +29,7 @@ export function TitleBar() {
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className="px-3 py-1 text-xs font-bold uppercase tracking-wider text-background/80 hover:text-background hover:bg-background/10 transition-colors duration-150 rounded"
+                className="px-3 py-1 text-xs font-bold uppercase tracking-wider text-white/80 hover:text-white hover:bg-white/10 transition-colors duration-150 rounded"
               >
                 {language === "en" ? item.en : item.zh}
               </button>
@@ -41,7 +41,7 @@ export function TitleBar() {
           {/* Language Toggle */}
           <button
             onClick={toggleLanguage}
-            className="p-2 hover:opacity-80 transition-all duration-200 flex items-center gap-2 text-background"
+            className="p-2 hover:opacity-80 transition-all duration-200 flex items-center gap-2 text-white"
             aria-label="Toggle language"
           >
             <Globe size={20} />
@@ -53,7 +53,7 @@ export function TitleBar() {
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-2 hover:opacity-80 transition-all duration-200 text-background"
+            className="p-2 hover:opacity-80 transition-all duration-200 text-white"
             aria-label="Toggle theme"
           >
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
@@ -64,7 +64,7 @@ export function TitleBar() {
             href="https://github.com/JuneDrinleng"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 hover:opacity-80 transition-all duration-200 text-background"
+            className="p-2 hover:opacity-80 transition-all duration-200 text-white"
             aria-label="GitHub"
           >
             <Github size={20} />
