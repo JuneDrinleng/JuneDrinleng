@@ -11,12 +11,23 @@
     <title>June Drinleng - CV</title>
     <script>
       // Prevent theme flash by applying theme before React loads
-      const theme =
-        localStorage.getItem("theme") ||
-        (window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light");
-      document.documentElement.classList.toggle("dark", theme === "dark");
+      // Also check URL param for cross-site theme sync
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var urlTheme = params.get("theme");
+        var theme;
+        if (urlTheme === "dark" || urlTheme === "light") {
+          theme = urlTheme;
+          localStorage.setItem("theme", theme);
+        } else {
+          theme =
+            localStorage.getItem("theme") ||
+            (window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light");
+        }
+        document.documentElement.classList.toggle("dark", theme === "dark");
+      })();
     </script>
   </head>
   <body>

@@ -11,6 +11,17 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
+    // Check URL parameter first (for cross-site theme sync)
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlTheme = urlParams.get("theme");
+    if (urlTheme === "light" || urlTheme === "dark") {
+      localStorage.setItem("theme", urlTheme);
+      // Clean the URL parameter without reload
+      const url = new URL(window.location.href);
+      url.searchParams.delete("theme");
+      window.history.replaceState({}, "", url.toString());
+      return urlTheme;
+    }
     const stored = localStorage.getItem("theme");
     if (stored === "light" || stored === "dark") return stored;
     return window.matchMedia("(prefers-color-scheme: dark)").matches
