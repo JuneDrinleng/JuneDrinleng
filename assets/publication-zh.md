@@ -6,8 +6,8 @@
 
 ## Overview
 
-![Cell Rep. Phys. Sci.](<https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng/main/assets/img/Cell%20Rep.%20Phys.%20Sci.%200,%20102904%20(2025)..jpg>)
+![Cell Rep. Phys. Sci.](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng/main/assets/img/cell-rep-phys-sci-2025.jpg)
 
-![Proc. Natl. Acad. Sci. U.S.A.](<https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng/main/assets/img/Proc.%20Natl.%20Acad.%20Sci.%20U.S.A.%20122,%20e2418643122%20(2025).png>)
+![Proc. Natl. Acad. Sci. U.S.A.](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng/main/assets/img/pnas-2025.png)
 
-![ACS Appl. Bio Mater.](<https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng/main/assets/img/ACS%20Appl.%20Bio%20Mater.%208,%20519–526%20(2025).jpeg>)
+![ACS Appl. Bio Mater.](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng/main/assets/img/acs-appl-bio-mater-2025.jpeg)
