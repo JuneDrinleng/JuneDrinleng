@@ -1,164 +1,269 @@
-:root {
-  --bg: #f5f4eb;
-  --surface: #fdfcf8;
-  --border: #d9d2be;
-  --primary: #384a42;
-  --accent: #ebd7a1;
-  --text: #2c2c2c;
-  --radius-lg: 1vw;
-  --shadow: 0 0.6vw 1.8vw rgba(0, 0, 0, 0.08);
-}
+/* ============================================
+   June Drinleng — 个人主页（Brutalist Editorial 风格）
+   ============================================ */
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html,
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  width: 100%;
-  min-height: 100%;
-  font-size: 1rem;
-  font-family: "Inter", sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  background: #ffffff;
+  color: #000000;
   line-height: 1.6;
-  overflow-x: hidden;
-}
-
-/* 导航栏 */
-.nav-bar {
-  background: var(--primary);
-  padding: 2vw 4vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-.logo {
-  font-family: "Pinyon Script", serif;
-  font-weight: 700;
-  font-size: 2.5rem;
-  color: #fff;
-}
-.nav-bar ul {
-  display: flex;
-  gap: 2vw;
-  list-style: none;
-}
-.nav-bar a {
-  font-size: 1.8rem;
-  font-family: "Pinyon Script", serif;
-  color: #fff;
-  text-decoration: none;
-  padding: 0.3em 0.5em;
-  border-radius: 999px;
-  transition: background 0.2s;
-}
-.nav-bar a:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.intro {
-  text-align: center;
-  margin-top: 2.5vw; /* 或者 padding-top */
-  padding: 2.5vw 0 1.5vw;
-}
-
-.handwritten {
-  width: 100%;
-  height: 100%;
-  display: block;
-  margin: 0 auto;
-}
-
-.handwritten text {
-  font-family: "Pinyon Script", cursive;
-  font-size: 4rem;
-  fill: var(--primary); /* 实心颜色 */
-  stroke: var(--primary); /* 描边颜色 */
-  stroke-width: 1.5px;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: drawText 3.5s ease forwards;
-}
-
-@keyframes drawText {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-/* 卡片横排区域 */
-.bottom-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2vw;
-  padding: 2vw 4vw;
-}
-.bottom-cards .card {
-  flex: 1 1 28%;
-  min-width: 280px;
-  max-width: 30%;
-  text-align: left;
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 2vw;
-  box-shadow: var(--shadow);
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  animation: fadeIn 0.8s ease both;
 }
+
+/* ---- 顶部导航栏 ---- */
+.nav-bar {
+  background: #000000;
+  color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  height: 2.75rem;
+}
+
+.logo {
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+}
+
+.nav-bar ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-bar a {
+  font-size: 0.75rem;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  transition: opacity 0.2s;
+}
+
+.nav-bar a:hover {
+  opacity: 0.8;
+}
+
+.nav-bar a svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ---- Header ---- */
+.site-header {
+  border-bottom: 4px solid #000000;
+}
+
+.site-header-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2rem;
+  text-align: center;
+}
+
+.site-title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.site-subtitle {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  opacity: 0.6;
+}
+
+/* ---- About Section ---- */
+.about-section {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 2.5rem;
+}
+
+.about-section .section-title {
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.about-section .section-subtitle {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  margin-bottom: 1.5rem;
+}
+
+/* ---- 卡片网格 ---- */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  border: 2px solid #000000;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  animation: fadeUp 0.5s ease both;
+}
+
 .card:hover {
-  transform: translateY(-4px) scale(1.01);
-  background: #fff7d8;
-  box-shadow: 0 0.8vw 2vw rgba(0, 0, 0, 0.12);
+  box-shadow: 6px 6px 0 0 #000000;
+}
+
+.card-body {
+  padding: 1.25rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 1vw;
-  background: linear-gradient(to right, #e3c8a1, #f9f3e6);
-  font-family: "Permanent Marker", cursive;
-  padding: 0.4em 0.8em;
-  border-radius: 0.6em;
-  display: inline-block;
-}
-.card p,
-.card ul {
-  font-size: 1rem;
-  line-height: 1.8;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
 }
 
-/* 页脚 */
-footer {
-  text-align: center;
-  font-size: 0.9rem;
-  padding: 1vw 0;
-  border-top: 1px solid var(--border);
-  background: var(--bg);
+.card p,
+.card ul {
+  font-size: 0.875rem;
+  line-height: 1.75;
+  opacity: 0.7;
 }
-footer a {
-  color: var(--primary);
+
+.card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.card ul li {
+  padding: 0.15rem 0;
+}
+
+.edu-year {
+  display: inline-block;
+  margin-right: 0.5em;
+  font-weight: 600;
+}
+
+.card-footer-link {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 2px solid #000000;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  opacity: 0.6;
+}
+
+/* ---- 链接卡片 ---- */
+.link-card {
   text-decoration: none;
-  transition: color 0.2s;
+  color: inherit;
+  cursor: pointer;
 }
+
+.link-card:hover .card-footer-link {
+  opacity: 1;
+}
+
+/* ---- Explore Section ---- */
+.explore-section {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1rem 2.5rem;
+}
+
+.explore-section .section-title {
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.explore-section .section-subtitle {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  margin-bottom: 1.5rem;
+}
+
+/* ---- 页脚 ---- */
+footer {
+  border-top: 2px solid #000000;
+  margin-top: auto;
+}
+
+footer .footer-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+
+footer p {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+}
+
+footer a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
 footer a:hover {
-  color: #5a7a6a;
+  opacity: 1;
   text-decoration: underline;
 }
 
-/* 动画 */
-@keyframes fadeIn {
+/* ---- 动画 ---- */
+@keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -166,45 +271,65 @@ footer a:hover {
   }
 }
 
-/* 响应式适配 */
-@media (max-width: 900px) {
-  .bottom-cards {
-    flex-direction: column;
-    align-items: center;
-    padding: 2vw;
+/* ---- 响应式 ---- */
+@media (max-width: 640px) {
+  .nav-bar {
+    padding: 0 0.75rem;
   }
-  .bottom-cards .card {
-    max-width: 90%;
-  }
-  .intro h2 {
-    font-size: 2rem;
-  }
-  .card h3 {
-    font-size: 1.2rem;
-  }
-}
-.nav-bar {
-  animation: slideDown 1s ease-out;
-}
 
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
+  .site-header-inner {
+    padding: 1rem 0.75rem 1.5rem;
   }
-  to {
-    transform: translateY(0);
-    opacity: 1;
+
+  .about-section,
+  .explore-section {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-body {
+    padding: 1rem 1.25rem;
   }
 }
 
-.card-link {
-  cursor: pointer;
+@media (min-width: 641px) {
+  .nav-bar {
+    padding: 0 1.5rem;
+    height: 3rem;
+  }
+
+  .nav-bar a {
+    font-size: 0.8125rem;
+  }
+
+  .logo {
+    font-size: 1rem;
+  }
+
+  .site-header-inner {
+    padding: 2rem 1.5rem 2.5rem;
+  }
+
+  .about-section,
+  .explore-section {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
 
-.pp {
-  font-size: 1.2rem;
-  color: var(--text);
-  margin-top: 1vw;
-  text-align: center;
+@media (min-width: 1024px) {
+  .nav-bar {
+    padding: 0 2.5rem;
+  }
+
+  .site-header-inner,
+  .about-section,
+  .explore-section {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
 }

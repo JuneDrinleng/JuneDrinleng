@@ -4,17 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>June Drinleng's Website</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Mrs+Sheppards&family=Permanent+Marker&family=Pinyon+Script&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./styles.css" />
     <link
       rel="icon"
       type="image/png"
@@ -28,107 +24,167 @@
     ></script>
   </head>
   <body>
+    <!-- 导航栏 -->
     <nav class="nav-bar" aria-label="主导航">
-      <h1 class="logo">June Drinleng's Website</h1>
+      <span class="logo">LUNE</span>
       <ul>
-        <!-- <li><a href="#">Seasonal&nbsp;Leaf</a></li>
-        <li><a href="#">Care&nbsp;指南</a></li>
-        <li><a href="#">Real&nbsp;Story</a></li> -->
         <li>
           <a
             href="https://github.com/JuneDrinleng"
             target="_blank"
             rel="noopener noreferrer"
-            >Contact&nbsp;Me</a
           >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              />
+            </svg>
+            GitHub
+          </a>
+        </li>
+        <li>
+          <a href="mailto:zhu-jl24@mails.tsinghua.edu.cn">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect width="20" height="16" x="2" y="4" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+            Email
+          </a>
         </li>
       </ul>
     </nav>
-    <main class="content">
-      <div class="intro">
-        <svg
-          class="handwritten"
-          viewBox="0 0 800 100"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="xMidYMid meet"
-        >
-          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">
-            欢迎你来到我的网站
-          </text>
-        </svg>
-      </div>
 
-      <section class="bottom-cards">
-        <article class="card">
-          <!-- <h3></h3> -->
-          <p class="pp">本网站仅供个人学习使用，尚未完成施工。</p>
-        </article>
-        <!-- <article class="card">
-          <h3>Learning Notes</h3>
-          <p>记录文献阅读的内容与感悟。</p>
-        </article>
-        <article class="card">
-          <h3>Research Helper</h3>
-          <p>你的科研生活小助手。</p>
-        </article>
-        <article class="card">
-          <h3>About&nbsp;Me</h3>
-          <p>
-            关于我
-            欢迎来到我的个人笔记主页，我是华清带学化学系的一名博士生，现在是博士
-            1年级。 我的教育经历： 2020-2024年 清华大学 致理书院 化学专业
-            学士学位 2024-至今 清华大学 化学系 分析化学专业 博士研究生在读
-            我的研究方向： 生命分析化学，单颗粒示踪技术，深度学习 in SPT
-          </p>
-        </article> -->
+    <!-- Header -->
+    <header class="site-header">
+      <div class="site-header-inner">
+        <h1 class="site-title">June Drinleng</h1>
+        <p class="site-subtitle">SPTer's Home</p>
+      </div>
+    </header>
+
+    <main>
+      <!-- 关于我 -->
+      <section class="about-section">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle">个人简介</p>
+
+        <div class="cards-grid">
+          <!-- 教育经历 -->
+          <div class="card">
+            <div class="card-body">
+              <h3>🎓 Education</h3>
+              <ul>
+                <li><span class="edu-year">2024 – 至今</span>清华大学 化学系 分析化学 博士在读</li>
+                <li><span class="edu-year">2020 – 2024</span>清华大学 致理书院 化学专业 理学学士</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 研究方向 -->
+          <div class="card">
+            <div class="card-body">
+              <h3>🔬 Research</h3>
+              <ul>
+                <li>生命分析化学</li>
+                <li>单颗粒追踪（SPT）与图像分析</li>
+                <li>深度学习辅助轨迹识别与特征提取</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 正在学习 -->
+          <div class="card">
+            <div class="card-body">
+              <h3>🌱 Learning</h3>
+              <ul>
+                <li>Deep Learning</li>
+                <li>Probabilistic Graphical Models</li>
+                <li>JavaScript / Web Development</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 探索 -->
+      <section class="explore-section">
+        <h2 class="section-title">Explore</h2>
+        <p class="section-subtitle">选择你的需要</p>
+
+        <div class="cards-grid">
+          <!-- Blog -->
+          <a
+            class="card link-card"
+            href="https://junedrinleng.github.io/blog"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="card-body">
+              <h3>📝 Blog</h3>
+              <p>分享技术见解、产品思考与创作心得，记录成长与探索的旅程。</p>
+              <div class="card-footer-link">了解更多 →</div>
+            </div>
+          </a>
+
+          <!-- VisualSPT -->
+          <a
+            class="card link-card"
+            href="https://junedrinleng.github.io/visualspt"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="card-body">
+              <h3>🔭 VisualSPT</h3>
+              <p>强大的桌面端可视化工具，提升工作效率，优化数据展示体验。</p>
+              <div class="card-footer-link">了解更多 →</div>
+            </div>
+          </a>
+
+          <!-- 导航页 -->
+          <a
+            class="card link-card"
+            href="./nav/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="card-body">
+              <h3>🧭 导航页</h3>
+              <p>汇聚个人网站与小工具，方便随时访问。</p>
+              <div class="card-footer-link">前往导航 →</div>
+            </div>
+          </a>
+        </div>
       </section>
     </main>
+
+    <!-- 页脚 -->
     <footer>
-      <p>
-        ©2025 June Drinleng |
-        <a href="https://beian.miit.gov.cn/" target="_blank"
-          >京ICP备2025124159号</a
-        >
-      </p>
+      <div class="footer-inner">
+        <p>
+          © 2025 June Drinleng |
+          <a href="https://beian.miit.gov.cn/" target="_blank"
+            >京ICP备2025124159号</a
+          >
+        </p>
+      </div>
     </footer>
-    <!-- <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const cards = document.querySelectorAll(".card");
-        cards.forEach((card) => {
-          const title = card.querySelector("h3")?.textContent || "";
-          if (title.includes("Notes")) {
-            card.addEventListener("click", () => {
-              window.open("https://note.junedrinleng.com", "_blank");
-            });
-            card.querySelector("p").innerHTML = `
-          包含文献阅读总结、化学知识要点、AI科研工具实践、代码笔记等内容：
-          <ul style="padding-left: 2em;">
-            <li>📚 论文 Digest：每日更新的文献阅读笔记</li>
-            <li>🧠 读博日记：记录读博生活的点点滴滴</li>
-            <li>💻 技术手记：Python、Java、Web Dav 等内容学校笔记</li>
-          </ul>`;
-          } else if (title.toLowerCase().includes("helper")) {
-            card.addEventListener("click", () => {
-              window.open("https://helper.junedrinleng.com", "_blank");
-            });
-            card.querySelector("p").innerHTML = `
-          一个集成式科研效率工具站，帮助您解决科研生活中的痛点，其功能包含：
-          <ul style="padding-left: 2em;">
-            <li>🔍 单词翻译：谷歌翻译，哪里不会搜哪里</li>
-            <li>⚡ 电费查询：酣战科研，永不断电</li>
-            <li>🔥 热搜速览：足不出户便知天下事</li>
-          </ul>`;
-          } else if (title.includes("About")) {
-            card.querySelector("p").innerHTML = `
-          👩‍🔬 我是清华大学化学系博士研究生，研究方向为生命分析与单颗粒示踪，我的研究兴趣：
-          <ul style="padding-left: 2em;">
-            <li>单颗粒追踪（SPT）与图像分析</li>
-            <li>深度学习辅助轨迹识别</li>
-            <li>深度学习辅助轨迹特征提取</li>
-          </ul>`;
-          }
-        });
-      });
-    </script> -->
   </body>
 </html>
