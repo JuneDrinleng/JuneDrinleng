@@ -8,7 +8,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <footer className="bg-muted text-foreground border-t-4 border-foreground py-8 mt-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm">
-            © 2024–2026 June Drinleng. All rights reserved.
+            © 2024–{new Date().getFullYear()} June Drinleng. All rights
+            reserved.
           </p>
           <div className="flex items-center justify-center gap-3 text-xs mt-2 opacity-70 flex-wrap">
             <a
