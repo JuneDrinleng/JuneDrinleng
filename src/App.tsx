@@ -14,7 +14,8 @@ declare global {
 }
 
 export function App() {
-  // Dismiss the loading overlay once the app has rendered AND all images loaded
+  // Dismiss the loading overlay once ALL critical images have loaded.
+  // Uses new Image() to preload — fully decoupled from React render timing.
   useEffect(() => {
     if (!window.__siteArrivalOverlay) return;
     window.__siteArrivalOverlay = false;
@@ -24,7 +25,6 @@ export function App() {
     const dismiss = () => {
       if (dismissed) return;
       dismissed = true;
-      observer?.disconnect();
       const overlay = document.getElementById("site-arrival-overlay");
       if (overlay) {
         overlay.style.opacity = "0";
@@ -34,52 +34,31 @@ export function App() {
       }
     };
 
-    const checkImages = () => {
-      const root = document.getElementById("root");
-      if (!root) return;
-      const images = Array.from(root.querySelectorAll<HTMLImageElement>("img"));
-      // Need at least 1 image (profile) to be in the DOM
-      if (images.length === 0) return;
-      const pending = images.filter((img) => !img.complete);
-      if (pending.length === 0) {
-        dismiss();
-        return;
-      }
-      // Listen for remaining images
-      let remaining = pending.length;
-      const onDone = () => {
-        remaining--;
-        if (remaining <= 0) dismiss();
-      };
-      pending.forEach((img) => {
-        img.addEventListener("load", onDone, { once: true });
-        img.addEventListener("error", onDone, { once: true });
-      });
+    // All images that appear on the page
+    const criticalImages = [
+      "/assets/profile.jpg",
+      "/assets/img/cell-rep-phys-sci-2025.jpg",
+      "/assets/img/pnas-2025.png",
+      "/assets/img/acs-appl-bio-mater-2025.jpeg",
+      "/assets/img/beian_logo.png",
+    ];
+
+    let remaining = criticalImages.length;
+    const onDone = () => {
+      remaining--;
+      if (remaining <= 0) dismiss();
     };
 
-    // Use MutationObserver to wait for images to appear in the DOM
-    const observer = new MutationObserver(() => {
-      const root = document.getElementById("root");
-      if (root && root.querySelectorAll("img").length > 0) {
-        observer.disconnect();
-        checkImages();
-      }
+    criticalImages.forEach((src) => {
+      const img = new Image();
+      img.onload = onDone;
+      img.onerror = onDone;
+      img.src = src;
     });
-
-    observer.observe(document.getElementById("root")!, {
-      childList: true,
-      subtree: true,
-    });
-
-    // Also check immediately in case images are already in the DOM
-    checkImages();
 
     // Safety timeout: dismiss after 6s no matter what
     const safety = setTimeout(dismiss, 6000);
-    return () => {
-      clearTimeout(safety);
-      observer.disconnect();
-    };
+    return () => clearTimeout(safety);
   }, []);
 
   return (
