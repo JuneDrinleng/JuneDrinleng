@@ -348,5 +348,22 @@
   "dateRange": {
     "start": "2020-09-01",
     "end": "2026-02-28"
+  },
+  "recentMonthAnalysis": {
+    "month": "2026-02",
+    "totalTracks": 16,
+    "styleBreakdown": [
+      { "style": "华语流行", "count": 6, "emoji": "🎵", "description": "国语/粤语流行旋律，情感细腻" },
+      { "style": "民谣/独立", "count": 4, "emoji": "🪗", "description": "吉他编曲为主，清新人文气息" },
+      { "style": "ACG音乐", "count": 3, "emoji": "🎮", "description": "游戏与动漫原声，氛围感强" },
+      { "style": "日系音乐", "count": 2, "emoji": "🌸", "description": "J-Pop 与动漫配乐风格" },
+      { "style": "摇滚", "count": 1, "emoji": "🎸", "description": "电吉他与强烈节奏感" }
+    ],
+    "moodProfile": [
+      { "mood": "抒情", "percent": 62, "color": "#6366f1" },
+      { "mood": "欢快", "percent": 19, "color": "#10b981" },
+      { "mood": "激昂", "percent": 13, "color": "#f59e0b" },
+      { "mood": "治愈", "percent": 6,  "color": "#06b6d4" }
+    ]
   }
 }
