@@ -16,6 +16,36 @@ import researchZh from "../../assets/research-zh.md?raw";
 import publicationEn from "../../assets/publication.md?raw";
 import publicationZh from "../../assets/publication-zh.md?raw";
 
+// Tiny base64 placeholder for blur-up effect (20x26px)
+const PROFILE_PLACEHOLDER =
+  "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABsSFBcUERsXFhceHBsgKEIrKCUlKFE6PTBCYFVlZF9VXVtqeJmBanGQc1tdhbWGkJ6jq62rZ4C8ybqmx5moq6T/2wBDARweHigjKE4rK06kbl1upKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKT/wAARCAAaABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAQBAwUC/8QAIBAAAgICAgIDAAAAAAAAAAAAAQIAEQMhBBIxUTJxkf/EABYBAQEBAAAAAAAAAAAAAAAAAAECAP/EABgRAQEBAQEAAAAAAAAAAAAAAAERACFh/9oADAMBAAIRAxEAPwBsc6mCl1FmvMMfOyZAaZSRvRvX5E8/ZMfl+raIRas+riPFXJjzEO2TEeutXZ9SxpcIDDbo5WU3RhMZi4oL1PslrNwhfdpuzkzZOvZXIu9k7l3JFquRiRR+N7DHcbUC/EjMA1WAfuSMJmduT7FwCXqtbWEtcANoVCGd/9k=";
+
+/** Blur-up profile image component */
+function ProfileImage() {
+  const [loaded, setLoaded] = useState(false);
+  const onLoad = useCallback(() => setLoaded(true), []);
+
+  return (
+    <div className="relative w-full overflow-hidden">
+      {/* Blurred placeholder – always rendered, fades out */}
+      <img
+        src={PROFILE_PLACEHOLDER}
+        alt=""
+        aria-hidden
+        className={`w-full h-auto object-cover transition-opacity duration-500 ${loaded ? "opacity-0" : "opacity-100"}`}
+        style={{ filter: "blur(12px)", transform: "scale(1.05)" }}
+      />
+      {/* Real image – positioned on top, fades in */}
+      <img
+        src="/assets/profile.jpg"
+        alt="Profile"
+        onLoad={onLoad}
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
+      />
+    </div>
+  );
+}
+
 interface Publication {
   title: string;
   authors: string;
@@ -160,11 +190,7 @@ export function Home() {
           >
             {/* Avatar – left */}
             <div className="sm:w-56 md:w-64 shrink-0 bg-gray-100 dark:bg-neutral-800 flex items-center justify-center p-6">
-              <img
-                src="/assets/profile.jpg"
-                alt="Profile"
-                className="w-full h-auto object-cover"
-              />
+              <ProfileImage />
             </div>
             {/* Bio – right */}
             <div className="flex-1 p-6 sm:p-8 bg-white dark:bg-neutral-900 flex flex-col justify-center">
