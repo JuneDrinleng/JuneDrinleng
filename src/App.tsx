@@ -14,12 +14,12 @@ declare global {
 }
 
 export function App() {
-  // Dismiss the arrival overlay once the app has fully rendered
+  // Dismiss the loading overlay once the app has rendered AND images have loaded
   useEffect(() => {
     if (!window.__siteArrivalOverlay) return;
     window.__siteArrivalOverlay = false;
-    // Small delay so the first paint settles behind the overlay
-    const timer = setTimeout(() => {
+
+    const dismiss = () => {
       const overlay = document.getElementById("site-arrival-overlay");
       if (overlay) {
         overlay.style.opacity = "0";
@@ -27,8 +27,33 @@ export function App() {
           once: true,
         });
       }
-    }, 100);
-    return () => clearTimeout(timer);
+    };
+
+    // Wait for all <img> in #root to finish loading
+    const images = Array.from(
+      document.querySelectorAll<HTMLImageElement>("#root img"),
+    );
+    const pending = images.filter((img) => !img.complete);
+
+    if (pending.length === 0) {
+      // All images already loaded (cached or none)
+      const t = setTimeout(dismiss, 50);
+      return () => clearTimeout(t);
+    }
+
+    let remaining = pending.length;
+    const onDone = () => {
+      remaining--;
+      if (remaining <= 0) dismiss();
+    };
+    pending.forEach((img) => {
+      img.addEventListener("load", onDone, { once: true });
+      img.addEventListener("error", onDone, { once: true });
+    });
+
+    // Safety timeout: dismiss after 4s no matter what
+    const safety = setTimeout(dismiss, 4000);
+    return () => clearTimeout(safety);
   }, []);
 
   return (

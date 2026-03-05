@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -6,11 +6,15 @@ import rehypeKatex from "rehype-katex";
 import { useLanguage } from "../contexts/LanguageContext";
 import "katex/dist/katex.min.css";
 
-interface MarkdownData {
-  file: string;
-  content: string;
-  title: string;
-}
+// Import markdown files at build time (bundled into JS, no fetch needed)
+import profileEn from "../../assets/profile.md?raw";
+import profileZh from "../../assets/profile-zh.md?raw";
+import educationEn from "../../assets/education.md?raw";
+import educationZh from "../../assets/education-zh.md?raw";
+import researchEn from "../../assets/research.md?raw";
+import researchZh from "../../assets/research-zh.md?raw";
+import publicationEn from "../../assets/publication.md?raw";
+import publicationZh from "../../assets/publication-zh.md?raw";
 
 interface Publication {
   title: string;
@@ -114,67 +118,32 @@ function PublicationCards({ content }: { content: string }) {
 
 export function Home() {
   const { language } = useLanguage();
-  const [markdownData, setMarkdownData] = useState<MarkdownData[]>([]);
-  const [profileContent, setProfileContent] = useState<string>("");
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const loadMarkdown = async () => {
-      try {
-        // Load profile
-        const profileFile = language === "en" ? "profile.md" : "profile-zh.md";
-        try {
-          const res = await fetch(`/assets/${profileFile}`);
-          if (res.ok) {
-            const text = await res.text();
-            // Strip the heading line, keep body only
-            setProfileContent(text.replace(/^# .+\n+/, "").trim());
-          }
-        } catch (e) {
-          console.error("Failed to load profile:", e);
-        }
-
-        const files =
-          language === "en"
-            ? ["education.md", "research.md", "publication.md"]
-            : ["education-zh.md", "research-zh.md", "publication-zh.md"];
-
-        const data: MarkdownData[] = [];
-
-        for (const file of files) {
-          try {
-            const response = await fetch(`/assets/${file}`);
-            if (response.ok) {
-              const content = await response.text();
-              const titleMatch = content.match(/^# (.+)$/m);
-              const title = titleMatch
-                ? titleMatch[1]
-                : file.replace(".md", "");
-              data.push({ file, content, title });
-            }
-          } catch (error) {
-            console.error(`Failed to load ${file}:`, error);
-          }
-        }
-
-        setMarkdownData(data);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadMarkdown();
+  const profileContent = useMemo(() => {
+    const raw = language === "en" ? profileEn : profileZh;
+    return raw.replace(/^# .+\n+/, "").trim();
   }, [language]);
 
-  if (loading) {
-    return (
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center text-lg">
-          {language === "en" ? "Loading..." : "加载中..."}
-        </div>
-      </div>
-    );
-  }
+  const markdownData = useMemo(() => {
+    const files =
+      language === "en"
+        ? [
+            { file: "education.md", raw: educationEn },
+            { file: "research.md", raw: researchEn },
+            { file: "publication.md", raw: publicationEn },
+          ]
+        : [
+            { file: "education-zh.md", raw: educationZh },
+            { file: "research-zh.md", raw: researchZh },
+            { file: "publication-zh.md", raw: publicationZh },
+          ];
+
+    return files.map(({ file, raw }) => {
+      const titleMatch = raw.match(/^# (.+)$/m);
+      const title = titleMatch ? titleMatch[1] : file.replace(".md", "");
+      return { file, content: raw, title };
+    });
+  }, [language]);
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
