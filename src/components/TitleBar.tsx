@@ -2,17 +2,39 @@ import { Moon, Sun, Github, Globe } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLanguage } from "../contexts/LanguageContext";
 
+const NAV_ITEMS = [
+  { id: "about", en: "About", zh: "关于" },
+  { id: "education", en: "Education", zh: "教育" },
+  { id: "research", en: "Research", zh: "研究" },
+  { id: "publications", en: "Publications", zh: "论文" },
+];
+
 export function TitleBar() {
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLanguage } = useLanguage();
 
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-primary border-b-4 border-foreground">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 sm:gap-6">
           <h1 className="text-xl sm:text-2xl font-bold text-background">
             June Drinleng
           </h1>
+          <nav className="hidden sm:flex items-center gap-1">
+            {NAV_ITEMS.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className="px-3 py-1 text-xs font-bold uppercase tracking-wider text-background/80 hover:text-background hover:bg-background/10 transition-colors duration-150 rounded"
+              >
+                {language === "en" ? item.en : item.zh}
+              </button>
+            ))}
+          </nav>
         </div>
 
         <div className="flex items-center gap-3 sm:gap-4">
