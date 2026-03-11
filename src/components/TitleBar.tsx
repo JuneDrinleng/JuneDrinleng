@@ -1,6 +1,8 @@
-import { Moon, Sun, Github, Globe } from "lucide-react";
+import { Moon, Sun, Github, Globe, BookOpen } from "lucide-react";
+import { useState } from "react";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLanguage } from "../contexts/LanguageContext";
+import SiteTransition from "./SiteTransition";
 
 const NAV_ITEMS = [
   { id: "about", en: "About", zh: "关于" },
@@ -12,6 +14,7 @@ const NAV_ITEMS = [
 export function TitleBar() {
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLanguage } = useLanguage();
+  const [transitioning, setTransitioning] = useState(false);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -38,6 +41,19 @@ export function TitleBar() {
         </div>
 
         <div className="flex items-center gap-3 sm:gap-4">
+          {/* Blog / LUNE site link */}
+          <button
+            onClick={() => setTransitioning(true)}
+            className="p-2 hover:opacity-80 transition-all duration-200 flex items-center gap-1.5 text-white"
+            aria-label="Go to Blog"
+            title="LUNE – Blog"
+          >
+            <BookOpen size={18} />
+            <span className="text-xs font-semibold hidden sm:inline">
+              {language === "zh" ? "博客" : "Blog"}
+            </span>
+          </button>
+
           {/* Language Toggle */}
           <button
             onClick={toggleLanguage}
@@ -71,6 +87,13 @@ export function TitleBar() {
           </a>
         </div>
       </div>
+
+      <SiteTransition
+        targetUrl="https://junedrinleng.github.io"
+        active={transitioning}
+        theme={theme}
+        onCancel={() => setTransitioning(false)}
+      />
     </header>
   );
 }
